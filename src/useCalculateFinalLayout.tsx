@@ -14,18 +14,18 @@ export function useCalculateFinalLayout(
   const [finalLayout, setFinalLayout] = useState<React.ReactElement[][]>([]);
 
   useEffect(() => {
-    if (isMeasuringFinished) {
-      const columns: React.ReactElement[][] = [[], []]; // Example with 2 columns
-      const columnHeights = [0, 0]; // Heights of the two columns
+    if (!isMeasuringFinished) return;
 
-      cheatBoxesHeights.forEach((height, index) => {
-        const columnIndex = columnHeights[0] <= columnHeights[1] ? 0 : 1;
-        columns[columnIndex].push(cheatBoxes[index]);
-        columnHeights[columnIndex] += height;
-      });
+    const columns: React.ReactElement[][] = [[], []]; // Example with 2 columns
+    const columnHeights = [0, 0]; // Heights of the two columns
 
-      setFinalLayout(columns);
-    }
+    cheatBoxesHeights.forEach((height, index) => {
+      const columnIndex = columnHeights[0] <= columnHeights[1] ? 0 : 1;
+      columns[columnIndex].push(cheatBoxes[index]);
+      columnHeights[columnIndex] += height;
+    });
+
+    setFinalLayout(columns);
   }, [isMeasuringFinished, cheatBoxesHeights, cheatBoxes, setFinalLayout]);
 
   return finalLayout;
