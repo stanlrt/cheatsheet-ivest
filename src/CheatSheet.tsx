@@ -1,30 +1,40 @@
-import styles from "./cheat-sheet.module.css";
+import { useRef } from "react";
+import { useCalculateFinalLayout } from "./useCalculateFinalLayout";
+import { useMeasureHeights } from "./useMeasureHeights";
 
-type CheatBoxProps = {
-  content?: React.ReactNode;
-  pageBreak?: boolean;
-};
+// Define the component
+function CheatSheet({ cheatBoxes }: { cheatBoxes: React.ReactElement[] }) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const divRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-export const CheatSheet = ({ boxes }: { boxes: CheatBoxProps[] }) => {
-  return (
-    <div className={styles.cheatSheet}>
-      {boxes.map((box, index) => (
-        <>
-          {box.pageBreak ? (
-            <div className={styles.pageBreak}></div>
-          ) : (
-            <CheatBox key={index} content={box.content} />
-          )}
-        </>
-      ))}
-    </div>
+  const { temporaryMeasuringLayout, cheatBoxesHeights, isMeasuringFinished } =
+    useMeasureHeights({
+      cheatBoxes,
+      divRefs,
+    });
+  const finalLayout = useCalculateFinalLayout(
+    isMeasuringFinished,
+    cheatBoxesHeights,
+    cheatBoxes
   );
-};
 
-const CheatBox = ({ content }: CheatBoxProps) => {
   return (
     <>
-      <div className={styles.cheatBox}>{content}</div>
+      {!isMeasuringFinished ? (
+        temporaryMeasuringLayout
+      ) : (
+        <div ref={containerRef} style={{ display: "flex" }}>
+          {finalLayout.map((column, colIndex) => (
+            <div key={colIndex} style={{ flex: 1, margin: "0 10px" }}>
+              {column.map((div, index) => (
+                <div key={index}>{div}</div>
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
     </>
   );
-};
+}
+
+export default CheatSheet;
