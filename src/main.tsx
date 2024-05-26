@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import CheatSheet from "./CheatSheet.tsx";
+import CheatSheet from "./react-cheatsheet/CheatSheet.tsx";
 import "./index.css";
 
 const cheatBoxes = [

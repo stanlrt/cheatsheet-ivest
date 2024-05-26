@@ -1,9 +1,32 @@
 import { useRef } from "react";
 import { useCalculateFinalLayout } from "./useCalculateFinalLayout";
 import { useMeasureHeights } from "./useMeasureHeights";
+import { PrintFormat } from "./printFormatting";
 
-// Define the component
-function CheatSheet({ cheatBoxes }: { cheatBoxes: React.ReactElement[] }) {
+type CheatSheetProps = {
+  /**
+   * The cheat boxes to be placed in the sheet, top-bottom, left-right, as to not overflow.
+   */
+  cheatBoxes: React.ReactElement[];
+  /**
+   * The number of columns to be used in the layout. Defaults to 3.
+   */
+  columnCount?: number;
+  /**
+   * The print format to be used in the layout. Defaults to A4.
+   */
+  printFormat?: PrintFormat;
+};
+
+/**
+ * A print-ready cheat sheet component that takes in a list of cheat boxes and a column count,
+ * and returns pages containing columns, where the cheatboxes are placed top-bottom, left-right, as to not overflow.
+ */
+function CheatSheet({
+  cheatBoxes,
+  columnCount = 3,
+  printFormat = PrintFormat.A4,
+}: CheatSheetProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const divRefs = useRef<(HTMLDivElement | null)[]>([]);
 
