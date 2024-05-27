@@ -1,5 +1,5 @@
 import { useCallback, useRef } from "react";
-import { CheatBox } from "./CheatBox";
+import { CheatBox, type CheatBoxContent } from "./CheatBox";
 import { Column } from "./Column";
 import { Page } from "./Page";
 import { PrintFormat } from "./printFormatting";
@@ -10,7 +10,7 @@ type CheatSheetProps = {
   /**
    * The cheat boxes to be placed in the sheet, top-bottom, left-right, as to not overflow.
    */
-  cheatBoxes: React.ReactElement[];
+  cheatBoxes: CheatBoxContent[];
   /**
    * The number of columns to be used in the layout in pixels. Defaults to 3.
    */
@@ -61,13 +61,13 @@ export function CheatSheet({
   );
 
   const renderCheatBox = useCallback(
-    (
-      cheatBoxContent: React.ReactElement,
-      index: number,
-      cheatBoxSpacing: number
-    ) => (
-      <CheatBox index={index} marginBottom={cheatBoxSpacing}>
-        {cheatBoxContent}
+    (cheatBox: CheatBoxContent, index: number, cheatBoxSpacing: number) => (
+      <CheatBox
+        title={cheatBox.title}
+        index={index}
+        marginBottom={cheatBoxSpacing}
+      >
+        {cheatBox.content}
       </CheatBox>
     ),
     []
@@ -75,7 +75,7 @@ export function CheatSheet({
 
   const renderColumn = useCallback(
     (
-      column: React.ReactElement[],
+      column: CheatBoxContent[],
       colIndex: number,
       printFormat: PrintFormat,
       columnCount: number
@@ -86,8 +86,8 @@ export function CheatSheet({
         printFormat={printFormat}
         columnCount={columnCount}
       >
-        {column.map((cheatBoxContent, index) =>
-          renderCheatBox(cheatBoxContent, index, cheatBoxSpacing)
+        {column.map((cheatBox, index) =>
+          renderCheatBox(cheatBox, index, cheatBoxSpacing)
         )}
       </Column>
     ),
@@ -95,7 +95,7 @@ export function CheatSheet({
   );
 
   const renderPage = useCallback(
-    (page: React.ReactElement[][], pageIndex: number) => (
+    (page: CheatBoxContent[][], pageIndex: number) => (
       <Page
         key={pageIndex}
         pageIndex={pageIndex}

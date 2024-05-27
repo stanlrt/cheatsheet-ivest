@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { printFormats, type PrintFormat } from "./printFormatting";
-import { CheatBox } from "./CheatBox";
+import { CheatBox, type CheatBoxContent } from "./CheatBox";
 
 export type HeightsMeasurement = {
   /**
@@ -38,7 +38,7 @@ export function useMeasureHeights({
   divRefs,
   printFormat,
 }: {
-  cheatBoxes: React.ReactElement[];
+  cheatBoxes: CheatBoxContent[];
   divRefs: React.MutableRefObject<(HTMLDivElement | null)[]>;
   printFormat: PrintFormat;
 }): MeasureHeightsReturn {
@@ -62,9 +62,13 @@ export function useMeasureHeights({
         height: printFormats[printFormat].height,
       }}
     >
-      {cheatBoxes.map((cheatBoxContent, index) => (
-        <CheatBox index={index} ref={(el) => (divRefs.current[index] = el)}>
-          {cheatBoxContent}
+      {cheatBoxes.map((cheatBox, index) => (
+        <CheatBox
+          title={cheatBox.title}
+          index={index}
+          ref={(el) => (divRefs.current[index] = el)}
+        >
+          {cheatBox.content}
         </CheatBox>
       ))}
     </div>
@@ -93,7 +97,7 @@ function useMeasurePageHeight(
 function useMeasureCheatBoxesHeights(
   divRefs: React.MutableRefObject<(HTMLDivElement | null)[]>,
   setMeasurement: React.Dispatch<React.SetStateAction<HeightsMeasurement>>,
-  cheatBoxes: React.ReactElement[]
+  cheatBoxes: CheatBoxContent[]
 ) {
   useEffect(() => {
     const measuredHeights = divRefs.current.map(
