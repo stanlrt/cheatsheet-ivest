@@ -1,11 +1,10 @@
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 import { CheatBox } from "./CheatBox";
+import { Column } from "./Column";
+import { Page } from "./Page";
 import { PrintFormat } from "./printFormatting";
 import { useCalculateFinalLayout } from "./useCalculateFinalLayout";
 import { useMeasureHeights } from "./useMeasureHeights";
-
-import { Column } from "./Column";
-import { Page } from "./Page";
 
 type CheatSheetProps = {
   /**
@@ -38,7 +37,7 @@ type CheatSheetProps = {
  * A print-ready cheat sheet component that takes in a list of cheat boxes and a column count,
  * and returns pages containing columns, where the cheatboxes are placed top-bottom, left-right, as to not overflow.
  */
-function CheatSheet({
+export function CheatSheet({
   cheatBoxes,
   columnCount = 3,
   columnSpacing = 10,
@@ -48,63 +47,83 @@ function CheatSheet({
 }: CheatSheetProps) {
   const divRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const {
-    temporaryMeasuringLayout,
-    cheatBoxesHeights,
-    pageHeight,
-    isMeasuringFinished,
-  } = useMeasureHeights({
+  const { measurementLayout, measurement } = useMeasureHeights({
     cheatBoxes,
     divRefs,
     printFormat,
   });
 
   const finalLayout = useCalculateFinalLayout(
-    isMeasuringFinished,
-    cheatBoxesHeights,
-    pageHeight,
+    measurement,
     cheatBoxSpacing,
     columnCount,
     cheatBoxes
   );
 
-  let globalCheatboxCount = 0;
+  const renderCheatBox = useCallback(
+    (
+      cheatBoxContent: React.ReactElement,
+      index: number,
+      cheatBoxSpacing: number
+    ) => (
+      <CheatBox index={index} marginBottom={cheatBoxSpacing}>
+        {cheatBoxContent}
+      </CheatBox>
+    ),
+    []
+  );
+
+  const renderColumn = useCallback(
+    (
+      column: React.ReactElement[],
+      colIndex: number,
+      printFormat: PrintFormat,
+      columnCount: number
+    ) => (
+      <Column
+        key={colIndex}
+        colIndex={colIndex}
+        printFormat={printFormat}
+        columnCount={columnCount}
+      >
+        {column.map((cheatBoxContent, index) =>
+          renderCheatBox(cheatBoxContent, index, cheatBoxSpacing)
+        )}
+      </Column>
+    ),
+    [renderCheatBox, cheatBoxSpacing]
+  );
+
+  const renderPage = useCallback(
+    (page: React.ReactElement[][], pageIndex: number) => (
+      <Page
+        key={pageIndex}
+        pageIndex={pageIndex}
+        printFormat={printFormat}
+        columnSpacing={columnSpacing}
+        showPageBreak={pageIndex !== finalLayout.length - 1}
+        showPageNumber={showPageNumber}
+      >
+        {page.map((column, colIndex) =>
+          renderColumn(column, colIndex, printFormat, columnCount)
+        )}
+      </Page>
+    ),
+    [
+      printFormat,
+      columnSpacing,
+      finalLayout.length,
+      showPageNumber,
+      renderColumn,
+      columnCount,
+    ]
+  );
 
   return (
     <>
-      {!isMeasuringFinished
-        ? temporaryMeasuringLayout
-        : finalLayout.map((page, pageIndex) => (
-            <Page
-              pageIndex={pageIndex}
-              printFormat={printFormat}
-              columnSpacing={columnSpacing}
-              showPageBreak={pageIndex !== finalLayout.length - 1}
-              showPageNumber={showPageNumber}
-            >
-              {page.map((column, colIndex) => (
-                <Column
-                  colIndex={colIndex}
-                  printFormat={printFormat}
-                  columnCount={columnCount}
-                >
-                  {column.map((cheatBoxContent) => {
-                    globalCheatboxCount++;
-                    return (
-                      <CheatBox
-                        key={globalCheatboxCount}
-                        marginBottom={cheatBoxSpacing}
-                      >
-                        {cheatBoxContent}
-                      </CheatBox>
-                    );
-                  })}
-                </Column>
-              ))}
-            </Page>
-          ))}
+      {!measurement.isCompleted
+        ? measurementLayout
+        : finalLayout.map(renderPage)}
     </>
   );
 }
-
-export default CheatSheet;

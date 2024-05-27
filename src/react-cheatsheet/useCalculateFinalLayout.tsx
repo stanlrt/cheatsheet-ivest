@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import type { HeightsMeasurement } from "./useMeasureHeights";
 
 /**
  * Calculate the final layout of the cheat boxes
@@ -7,9 +8,7 @@ import { useEffect, useState } from "react";
  * @param setLayout - The function to set the layout
  */
 export function useCalculateFinalLayout(
-  isMeasuringFinished: boolean,
-  cheatBoxesHeights: number[],
-  pageHeight: number,
+  measurement: HeightsMeasurement,
   cheatBoxSpacing: number,
   columnCount: number,
   cheatBoxes: React.ReactElement[]
@@ -17,7 +16,9 @@ export function useCalculateFinalLayout(
   const [finalLayout, setFinalLayout] = useState<React.ReactElement[][][]>([]);
 
   useEffect(() => {
-    if (!isMeasuringFinished) return;
+    const { cheatBoxesHeights, pageHeight } = measurement;
+
+    if (!measurement.isCompleted) return;
 
     let currentPage = 0;
     let currentColumn = 0;
@@ -51,15 +52,7 @@ export function useCalculateFinalLayout(
     });
 
     setFinalLayout(calculatedLayout);
-  }, [
-    isMeasuringFinished,
-    cheatBoxesHeights,
-    cheatBoxes,
-    setFinalLayout,
-    pageHeight,
-    columnCount,
-    cheatBoxSpacing,
-  ]);
+  }, [cheatBoxes, setFinalLayout, columnCount, cheatBoxSpacing, measurement]);
 
   return finalLayout;
 }

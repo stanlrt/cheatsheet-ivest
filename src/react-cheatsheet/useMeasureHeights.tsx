@@ -2,21 +2,30 @@ import { useEffect, useRef, useState } from "react";
 import { printFormats, type PrintFormat } from "./printFormatting";
 import { CheatBox } from "./CheatBox";
 
-type MeasureHeightsReturn = {
-  /**
-   * The temporrary layout to measure the heights of the cheat boxes
-   */
-  temporaryMeasuringLayout: React.ReactElement;
+export type HeightsMeasurement = {
   /**
    * The heights of the cheat boxes
    */
   cheatBoxesHeights: number[];
-
+  /**
+   * The height of the page
+   */
   pageHeight: number;
   /**
    * Whether the measuring is finished
    */
-  isMeasuringFinished: boolean;
+  isCompleted: boolean;
+};
+
+type MeasureHeightsReturn = {
+  /**
+   * The temporrary layout to measure the heights of the cheat boxes
+   */
+  measurementLayout: React.ReactElement;
+  /**
+   * The measurement of the heights
+   */
+  measurement: HeightsMeasurement;
 };
 
 /**
@@ -34,19 +43,16 @@ export function useMeasureHeights({
   printFormat: PrintFormat;
 }): MeasureHeightsReturn {
   const pageRef = useRef<HTMLDivElement>(null);
-  const [pageHeight, setPageHeight] = useState(0);
-  const [cheatBoxesHeights, setCheatBoxesHeights] = useState<number[]>([]);
-  const [isMeasuringFinished, setIsMeasuringFinished] = useState(false);
+  const [measurement, setMeasurement] = useState<HeightsMeasurement>({
+    cheatBoxesHeights: [],
+    pageHeight: 0,
+    isCompleted: false,
+  });
 
-  useMeasureCheatBoxesHeights(
-    divRefs,
-    setCheatBoxesHeights,
-    setIsMeasuringFinished,
-    cheatBoxes
-  );
-  useMeasurePageHeight(pageRef, setPageHeight, printFormat);
+  useMeasureCheatBoxesHeights(divRefs, setMeasurement, cheatBoxes);
+  useMeasurePageHeight(pageRef, setMeasurement, printFormat);
 
-  const temporaryMeasuringLayout = (
+  const measurementLayout = (
     <div
       ref={pageRef}
       style={{
@@ -57,7 +63,7 @@ export function useMeasureHeights({
       }}
     >
       {cheatBoxes.map((cheatBoxContent, index) => (
-        <CheatBox key={index} ref={(el) => (divRefs.current[index] = el)}>
+        <CheatBox index={index} ref={(el) => (divRefs.current[index] = el)}>
           {cheatBoxContent}
         </CheatBox>
       ))}
@@ -65,35 +71,38 @@ export function useMeasureHeights({
   );
 
   return {
-    temporaryMeasuringLayout,
-    cheatBoxesHeights,
-    pageHeight,
-    isMeasuringFinished,
+    measurementLayout,
+    measurement,
   };
 }
 function useMeasurePageHeight(
   pageRef: React.MutableRefObject<HTMLDivElement | null>,
-  setPageHeight: React.Dispatch<React.SetStateAction<number>>,
+  setMeasurement: React.Dispatch<React.SetStateAction<HeightsMeasurement>>,
   printFormat: PrintFormat
 ) {
   useEffect(() => {
     if (pageRef.current) {
-      setPageHeight(pageRef.current.offsetHeight);
+      setMeasurement((state) => ({
+        ...state,
+        pageHeight: pageRef.current!.offsetHeight,
+      }));
     }
-  }, [printFormat, pageRef, setPageHeight]);
+  }, [printFormat, pageRef, setMeasurement]);
 }
 
 function useMeasureCheatBoxesHeights(
   divRefs: React.MutableRefObject<(HTMLDivElement | null)[]>,
-  setCheatBoxesHeights: React.Dispatch<React.SetStateAction<number[]>>,
-  setIsMeasuringFinished: React.Dispatch<React.SetStateAction<boolean>>,
+  setMeasurement: React.Dispatch<React.SetStateAction<HeightsMeasurement>>,
   cheatBoxes: React.ReactElement[]
 ) {
   useEffect(() => {
     const measuredHeights = divRefs.current.map(
       (div) => div?.offsetHeight || 0
     );
-    setCheatBoxesHeights(measuredHeights);
-    setIsMeasuringFinished(true);
-  }, [cheatBoxes, divRefs, setCheatBoxesHeights, setIsMeasuringFinished]);
+    setMeasurement((state) => ({
+      ...state,
+      cheatBoxesHeights: measuredHeights,
+      isCompleted: true,
+    }));
+  }, [cheatBoxes, divRefs, setMeasurement]);
 }
