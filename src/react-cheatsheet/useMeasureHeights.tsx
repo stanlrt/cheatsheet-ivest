@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { printFormats, type PrintFormat } from "./printFormatting";
 
+import styles from "./cheat-sheet.module.css";
+
 type MeasureHeightsReturn = {
   /**
    * The temporrary layout to measure the heights of the cheat boxes
@@ -62,7 +64,11 @@ export function useMeasureHeights({
       }}
     >
       {cheatBoxes.map((div, index) => (
-        <div key={index} ref={(el) => (divRefs.current[index] = el)}>
+        <div
+          className={styles.cheatBox}
+          key={index}
+          ref={(el) => (divRefs.current[index] = el)}
+        >
           {div}
         </div>
       ))}

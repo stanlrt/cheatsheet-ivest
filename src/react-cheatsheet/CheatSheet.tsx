@@ -1,7 +1,7 @@
 import { Fragment, useRef } from "react";
+import { PrintFormat, printFormats } from "./printFormatting";
 import { useCalculateFinalLayout } from "./useCalculateFinalLayout";
 import { useMeasureHeights } from "./useMeasureHeights";
-import { PrintFormat, printFormats, type CSSLength } from "./printFormatting";
 
 import styles from "./cheat-sheet.module.css";
 
@@ -11,13 +11,15 @@ type CheatSheetProps = {
    */
   cheatBoxes: React.ReactElement[];
   /**
-   * The number of columns to be used in the layout. Defaults to 3.
+   * The number of columns to be used in the layout in pixels. Defaults to 3.
    */
   columnCount?: number;
-
+  /**
+   * The spacing between the columns in pixels. Defaults to 10px.
+   */
   columnSpacing?: number;
   /**
-   * The spacing between the cheat boxes. Defaults to 10px.
+   * The spacing between the cheat boxes in pixels. Defaults to 10px.
    */
   cheatBoxSpacing?: number;
   /**
@@ -49,6 +51,7 @@ function CheatSheet({
     divRefs,
     printFormat,
   });
+
   const finalLayout = useCalculateFinalLayout(
     isMeasuringFinished,
     cheatBoxesHeights,
@@ -58,6 +61,9 @@ function CheatSheet({
     cheatBoxes
   );
 
+  // Used to generate unique ids for the cheat boxes
+  let cheatboxCount = 0;
+
   return (
     <>
       {!isMeasuringFinished
@@ -65,11 +71,16 @@ function CheatSheet({
         : finalLayout.map((page, pageIndex) => (
             <Fragment key={pageIndex}>
               <div
+                id={`page-counter-${pageIndex + 1}`}
+                className={styles.printTopRight}
+              >
+                {pageIndex + 1}
+              </div>
+              <div
                 key={pageIndex}
                 id={`page-${pageIndex}`}
+                className={styles.page}
                 style={{
-                  display: "flex",
-                  flexDirection: "row",
                   height: printFormats[printFormat].height,
                   width: printFormats[printFormat].width,
                   gap: columnSpacing,
@@ -85,19 +96,25 @@ function CheatSheet({
                       width: `calc(${printFormats[printFormat].width} / ${columnCount})`,
                     }}
                   >
-                    {column.map((cheatBox, index) => (
-                      <div
-                        id={`cheat-box-${index}`}
-                        key={index}
-                        style={{ marginBottom: cheatBoxSpacing }}
-                      >
-                        {cheatBox}
-                      </div>
-                    ))}
+                    {column.map((cheatBox, index) => {
+                      cheatboxCount++;
+                      return (
+                        <div
+                          id={`cheat-box-${cheatboxCount}`}
+                          key={index}
+                          className={styles.cheatBox}
+                          style={{ marginBottom: cheatBoxSpacing }}
+                        >
+                          {cheatBox}
+                        </div>
+                      );
+                    })}
                   </div>
                 ))}
               </div>
-              <div className={styles.pageBreak} />
+              {pageIndex !== finalLayout.length - 1 ? (
+                <div className={styles.pageBreak} />
+              ) : null}
             </Fragment>
           ))}
     </>

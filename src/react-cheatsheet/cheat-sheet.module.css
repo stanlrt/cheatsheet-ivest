@@ -1,47 +1,53 @@
-body {
-  width: 297mm;
-  height: 210mm;
-  min-width: 297mm;
-  max-width: 297mm;
-  min-height: 210mm;
-  max-height: 210mm;
-  size: A4 landscape;
-  display: flex;
-  align-items: center;
-  justify-items: start;
-  overflow: hidden;
-  box-sizing: border-box;
+@page {
+  margin-bottom: 0mm;
 }
 
 @media print {
   body {
-    overflow: visible; /* Ensure content is not hidden */
+    size: A4 landscape;
+  }
+
+  .printTopRight {
+    display: block;
+    position: fixed;
+    top: -15px;
+    right: -15px;
+    font-size: 10px;
   }
 }
 
 @media screen {
-  body {
-    padding-bottom: 8mm;
+  .page {
+    border-bottom: 4px solid black;
   }
 }
 
-.cheatSheet {
-  width: 100%;
+body {
+  position: relative;
   height: 100%;
-  column-count: 3;
-  column-gap: 20px;
-  column-fill: auto;
-  overflow: hidden;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-items: start;
+  box-sizing: border-box;
+}
+
+.printTopRight {
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  font-size: 10px;
 }
 
 .cheatBox {
-  display: inline-block;
-  width: 100%;
-  break-inside: avoid-column;
   border: 1px solid black;
   padding: 10px;
-  box-sizing: border-box;
-  margin-bottom: 10px;
+}
+
+.page {
+  display: flex;
+  flex-direction: row;
 }
 
 .pageBreak {
