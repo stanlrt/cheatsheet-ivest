@@ -12,7 +12,7 @@ type MeasureHeightsReturn = {
    */
   cheatBoxesHeights: number[];
 
-  containerHeight: number;
+  pageHeight: number;
   /**
    * Whether the measuring is finished
    */
@@ -33,8 +33,8 @@ export function useMeasureHeights({
   divRefs: React.MutableRefObject<(HTMLDivElement | null)[]>;
   printFormat: PrintFormat;
 }): MeasureHeightsReturn {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [containerHeight, setContainerHeight] = useState(0);
+  const pageRef = useRef<HTMLDivElement>(null);
+  const [pageHeight, setPageHeight] = useState(0);
   const [cheatBoxesHeights, setCheatBoxesHeights] = useState<number[]>([]);
   const [isMeasuringFinished, setIsMeasuringFinished] = useState(false);
 
@@ -44,11 +44,11 @@ export function useMeasureHeights({
     setIsMeasuringFinished,
     cheatBoxes
   );
-  useMeasurePageHeight(containerRef, setContainerHeight, printFormat);
+  useMeasurePageHeight(pageRef, setPageHeight, printFormat);
 
   const temporaryMeasuringLayout = (
     <div
-      ref={containerRef}
+      ref={pageRef}
       style={{
         visibility: "hidden",
         position: "absolute",
@@ -67,20 +67,20 @@ export function useMeasureHeights({
   return {
     temporaryMeasuringLayout,
     cheatBoxesHeights,
-    containerHeight,
+    pageHeight,
     isMeasuringFinished,
   };
 }
 function useMeasurePageHeight(
-  containerRef: React.MutableRefObject<HTMLDivElement | null>,
-  setContainerHeight: React.Dispatch<React.SetStateAction<number>>,
+  pageRef: React.MutableRefObject<HTMLDivElement | null>,
+  setPageHeight: React.Dispatch<React.SetStateAction<number>>,
   printFormat: PrintFormat
 ) {
   useEffect(() => {
-    if (containerRef.current) {
-      setContainerHeight(containerRef.current.offsetHeight);
+    if (pageRef.current) {
+      setPageHeight(pageRef.current.offsetHeight);
     }
-  }, [printFormat, containerRef, setContainerHeight]);
+  }, [printFormat, pageRef, setPageHeight]);
 }
 
 function useMeasureCheatBoxesHeights(

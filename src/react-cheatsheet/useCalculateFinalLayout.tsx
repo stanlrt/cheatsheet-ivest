@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 export function useCalculateFinalLayout(
   isMeasuringFinished: boolean,
   cheatBoxesHeights: number[],
-  containerHeight: number,
+  pageHeight: number,
   cheatBoxSpacing: number,
   columnCount: number,
   cheatBoxes: React.ReactElement[]
@@ -29,7 +29,7 @@ export function useCalculateFinalLayout(
       const currentCheatBoxHeight = cheatBoxesHeights[index];
       currentColumnContentHeight += currentCheatBoxHeight;
 
-      if (currentColumnContentHeight > containerHeight) {
+      if (currentColumnContentHeight > pageHeight) {
         currentColumnContentHeight = currentCheatBoxHeight;
         currentColumn++;
         if (currentColumn >= columnCount) {
@@ -56,7 +56,7 @@ export function useCalculateFinalLayout(
     cheatBoxesHeights,
     cheatBoxes,
     setFinalLayout,
-    containerHeight,
+    pageHeight,
     columnCount,
     cheatBoxSpacing,
   ]);

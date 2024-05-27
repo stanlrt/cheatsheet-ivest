@@ -1,10 +1,11 @@
-import { Fragment, useRef } from "react";
+import { useRef } from "react";
 import { CheatBox } from "./CheatBox";
-import { PrintFormat, printFormats } from "./printFormatting";
+import { PrintFormat } from "./printFormatting";
 import { useCalculateFinalLayout } from "./useCalculateFinalLayout";
 import { useMeasureHeights } from "./useMeasureHeights";
 
-import styles from "./cheat-sheet.module.css";
+import { Column } from "./Column";
+import { Page } from "./Page";
 
 type CheatSheetProps = {
   /**
@@ -50,7 +51,7 @@ function CheatSheet({
   const {
     temporaryMeasuringLayout,
     cheatBoxesHeights,
-    containerHeight,
+    pageHeight,
     isMeasuringFinished,
   } = useMeasureHeights({
     cheatBoxes,
@@ -61,7 +62,7 @@ function CheatSheet({
   const finalLayout = useCalculateFinalLayout(
     isMeasuringFinished,
     cheatBoxesHeights,
-    containerHeight,
+    pageHeight,
     cheatBoxSpacing,
     columnCount,
     cheatBoxes
@@ -74,53 +75,33 @@ function CheatSheet({
       {!isMeasuringFinished
         ? temporaryMeasuringLayout
         : finalLayout.map((page, pageIndex) => (
-            <Fragment key={pageIndex}>
-              {showPageNumber && (
-                <div
-                  id={`page-counter-${pageIndex + 1}`}
-                  className={styles.printTopRight}
+            <Page
+              pageIndex={pageIndex}
+              printFormat={printFormat}
+              columnSpacing={columnSpacing}
+              showPageBreak={pageIndex !== finalLayout.length - 1}
+              showPageNumber={showPageNumber}
+            >
+              {page.map((column, colIndex) => (
+                <Column
+                  colIndex={colIndex}
+                  printFormat={printFormat}
+                  columnCount={columnCount}
                 >
-                  {pageIndex + 1}
-                </div>
-              )}
-              <div
-                key={pageIndex}
-                id={`page-${pageIndex}`}
-                className={styles.page}
-                style={{
-                  height: printFormats[printFormat].height,
-                  width: printFormats[printFormat].width,
-                  gap: columnSpacing,
-                }}
-              >
-                {page.map((column, colIndex) => (
-                  <div
-                    id={`column-${colIndex}`}
-                    key={colIndex}
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      width: `calc(${printFormats[printFormat].width} / ${columnCount})`,
-                    }}
-                  >
-                    {column.map((cheatBoxContent) => {
-                      globalCheatboxCount++;
-                      return (
-                        <CheatBox
-                          key={globalCheatboxCount}
-                          marginBottom={cheatBoxSpacing}
-                        >
-                          {cheatBoxContent}
-                        </CheatBox>
-                      );
-                    })}
-                  </div>
-                ))}
-              </div>
-              {pageIndex !== finalLayout.length - 1 ? (
-                <div className={styles.pageBreak} />
-              ) : null}
-            </Fragment>
+                  {column.map((cheatBoxContent) => {
+                    globalCheatboxCount++;
+                    return (
+                      <CheatBox
+                        key={globalCheatboxCount}
+                        marginBottom={cheatBoxSpacing}
+                      >
+                        {cheatBoxContent}
+                      </CheatBox>
+                    );
+                  })}
+                </Column>
+              ))}
+            </Page>
           ))}
     </>
   );
