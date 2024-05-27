@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useCalculateFinalLayout } from "./useCalculateFinalLayout";
 import { useMeasureHeights } from "./useMeasureHeights";
-import { PrintFormat } from "./printFormatting";
+import { PrintFormat, printFormats, type CSSLength } from "./printFormatting";
 
 type CheatSheetProps = {
   /**
@@ -12,6 +12,10 @@ type CheatSheetProps = {
    * The number of columns to be used in the layout. Defaults to 3.
    */
   columnCount?: number;
+  /**
+   * The spacing between the cheat boxes. Defaults to 10px.
+   */
+  cheatBoxSpacing?: CSSLength;
   /**
    * The print format to be used in the layout. Defaults to A4.
    */
@@ -25,19 +29,25 @@ type CheatSheetProps = {
 function CheatSheet({
   cheatBoxes,
   columnCount = 3,
+  cheatBoxSpacing = "10px",
   printFormat = PrintFormat.A4,
 }: CheatSheetProps) {
-  const containerRef = useRef<HTMLDivElement | null>(null);
   const divRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const { temporaryMeasuringLayout, cheatBoxesHeights, isMeasuringFinished } =
-    useMeasureHeights({
-      cheatBoxes,
-      divRefs,
-    });
+  const {
+    temporaryMeasuringLayout,
+    cheatBoxesHeights,
+    containerHeight,
+    isMeasuringFinished,
+  } = useMeasureHeights({
+    cheatBoxes,
+    divRefs,
+    printFormat,
+  });
   const finalLayout = useCalculateFinalLayout(
     isMeasuringFinished,
     cheatBoxesHeights,
+    containerHeight,
     cheatBoxes
   );
 
@@ -46,7 +56,15 @@ function CheatSheet({
       {!isMeasuringFinished ? (
         temporaryMeasuringLayout
       ) : (
-        <div ref={containerRef} style={{ display: "flex" }}>
+        <div
+          id={`page-${printFormat}`}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            height: printFormats[printFormat].height,
+            width: printFormats[printFormat].width,
+          }}
+        >
           {finalLayout.map((column, colIndex) => (
             <div key={colIndex} style={{ flex: 1, margin: "0 10px" }}>
               {column.map((div, index) => (

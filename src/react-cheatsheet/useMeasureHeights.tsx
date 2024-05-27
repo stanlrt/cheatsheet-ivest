@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { printFormats, type PrintFormat } from "./printFormatting";
 
 type MeasureHeightsReturn = {
   /**
@@ -9,6 +10,8 @@ type MeasureHeightsReturn = {
    * The heights of the cheat boxes
    */
   cheatBoxesHeights: number[];
+
+  containerHeight: number;
   /**
    * Whether the measuring is finished
    */
@@ -23,10 +26,14 @@ type MeasureHeightsReturn = {
 export function useMeasureHeights({
   cheatBoxes,
   divRefs,
+  printFormat,
 }: {
   cheatBoxes: React.ReactElement[];
   divRefs: React.MutableRefObject<(HTMLDivElement | null)[]>;
+  printFormat: PrintFormat;
 }): MeasureHeightsReturn {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerHeight, setContainerHeight] = useState(0);
   const [cheatBoxesHeights, setCheatBoxesHeights] = useState<number[]>([]);
   const [isMeasuringFinished, setIsMeasuringFinished] = useState(false);
 
@@ -38,8 +45,22 @@ export function useMeasureHeights({
     setIsMeasuringFinished(true);
   }, [cheatBoxes, divRefs, setCheatBoxesHeights]);
 
+  useEffect(() => {
+    if (containerRef.current) {
+      setContainerHeight(containerRef.current.offsetHeight);
+    }
+  }, [printFormat, containerRef]);
+
   const temporaryMeasuringLayout = (
-    <div style={{ visibility: "hidden", position: "absolute", top: 0 }}>
+    <div
+      ref={containerRef}
+      style={{
+        visibility: "hidden",
+        position: "absolute",
+        top: 0,
+        height: printFormats[printFormat].height,
+      }}
+    >
       {cheatBoxes.map((div, index) => (
         <div key={index} ref={(el) => (divRefs.current[index] = el)}>
           {div}
@@ -48,5 +69,10 @@ export function useMeasureHeights({
     </div>
   );
 
-  return { temporaryMeasuringLayout, cheatBoxesHeights, isMeasuringFinished };
+  return {
+    temporaryMeasuringLayout,
+    cheatBoxesHeights,
+    containerHeight,
+    isMeasuringFinished,
+  };
 }

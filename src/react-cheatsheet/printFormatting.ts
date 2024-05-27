@@ -2,14 +2,27 @@ export enum PrintFormat {
   A4 = "A4",
 }
 
-type DimensionsInMillimeters = {
-  width: number;
-  height: number;
+export type CSSLength = `${number}${
+  | "px"
+  | "em"
+  | "rem"
+  | "%"
+  | "vh"
+  | "vw"
+  | "cm"
+  | "mm"
+  | "in"
+  | "pt"
+  | "pc"}`;
+
+type CSSDimensions = {
+  width: CSSLength;
+  height: CSSLength;
 };
 
-export const printFormats: Record<PrintFormat, DimensionsInMillimeters> = {
+export const printFormats: Record<PrintFormat, CSSDimensions> = {
   [PrintFormat.A4]: {
-    width: 210,
-    height: 297,
+    width: "210mm",
+    height: "297mm",
   },
 };

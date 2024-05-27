@@ -9,6 +9,7 @@ import React, { useEffect, useState } from "react";
 export function useCalculateFinalLayout(
   isMeasuringFinished: boolean,
   cheatBoxesHeights: number[],
+  containerHeight: number,
   cheatBoxes: React.ReactElement[]
 ) {
   const [finalLayout, setFinalLayout] = useState<React.ReactElement[][]>([]);
@@ -26,7 +27,13 @@ export function useCalculateFinalLayout(
     });
 
     setFinalLayout(columns);
-  }, [isMeasuringFinished, cheatBoxesHeights, cheatBoxes, setFinalLayout]);
+  }, [
+    isMeasuringFinished,
+    cheatBoxesHeights,
+    cheatBoxes,
+    setFinalLayout,
+    containerHeight,
+  ]);
 
   return finalLayout;
 }
