@@ -22,7 +22,6 @@ export const CheatBox = forwardRef(
     return (
       <div
         id={`cheat-box-${index}`}
-        key={index}
         ref={ref}
         className={styles.cheatBox}
         style={{ marginBottom }}

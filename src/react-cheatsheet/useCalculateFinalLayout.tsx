@@ -26,10 +26,16 @@ export function useCalculateFinalLayout(
     let currentColumnContentHeight = 0;
 
     const calculatedLayout: CheatBoxContent[][][] = [[]];
+    console.log("page height ", pageHeight);
 
     cheatBoxes.forEach((cheatBox, index) => {
       const currentCheatBoxHeight = cheatBoxesHeights[index];
+
+      console.log("Height of cheatBox nr", index, "is ", currentCheatBoxHeight);
+
       currentColumnContentHeight += currentCheatBoxHeight;
+
+      console.log("currentColumnContentHeight ", currentColumnContentHeight);
 
       if (currentColumnContentHeight > pageHeight) {
         currentColumnContentHeight = currentCheatBoxHeight;

@@ -37,10 +37,12 @@ export function useMeasureHeights({
   cheatBoxes,
   divRefs,
   printFormat,
+  columnCount,
 }: {
   cheatBoxes: CheatBoxContent[];
   divRefs: React.MutableRefObject<(HTMLDivElement | null)[]>;
   printFormat: PrintFormat;
+  columnCount: number;
 }): MeasureHeightsReturn {
   const pageRef = useRef<HTMLDivElement>(null);
   const [measurement, setMeasurement] = useState<HeightsMeasurement>({
@@ -56,14 +58,16 @@ export function useMeasureHeights({
     <div
       ref={pageRef}
       style={{
-        visibility: "hidden",
+        // visibility: "hidden",
         position: "absolute",
         top: 0,
         height: printFormats[printFormat].height,
+        width: `calc(${printFormats[printFormat].width} / ${columnCount})`,
       }}
     >
       {cheatBoxes.map((cheatBox, index) => (
         <CheatBox
+          key={index}
           title={cheatBox.title}
           index={index}
           ref={(el) => (divRefs.current[index] = el)}

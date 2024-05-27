@@ -51,6 +51,7 @@ export function CheatSheet({
     cheatBoxes,
     divRefs,
     printFormat,
+    columnCount,
   });
 
   const finalLayout = useCalculateFinalLayout(
@@ -63,6 +64,7 @@ export function CheatSheet({
   const renderCheatBox = useCallback(
     (cheatBox: CheatBoxContent, index: number, cheatBoxSpacing: number) => (
       <CheatBox
+        key={index}
         title={cheatBox.title}
         index={index}
         marginBottom={cheatBoxSpacing}
