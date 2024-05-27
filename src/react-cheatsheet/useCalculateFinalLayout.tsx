@@ -10,29 +10,55 @@ export function useCalculateFinalLayout(
   isMeasuringFinished: boolean,
   cheatBoxesHeights: number[],
   containerHeight: number,
+  cheatBoxSpacing: number,
+  columnCount: number,
   cheatBoxes: React.ReactElement[]
 ) {
-  const [finalLayout, setFinalLayout] = useState<React.ReactElement[][]>([]);
+  const [finalLayout, setFinalLayout] = useState<React.ReactElement[][][]>([]);
 
   useEffect(() => {
     if (!isMeasuringFinished) return;
 
-    const columns: React.ReactElement[][] = [[], []]; // Example with 2 columns
-    const columnHeights = [0, 0]; // Heights of the two columns
+    let currentPage = 0;
+    let currentColumn = 0;
+    let currentColumnContentHeight = 0;
 
-    cheatBoxesHeights.forEach((height, index) => {
-      const columnIndex = columnHeights[0] <= columnHeights[1] ? 0 : 1;
-      columns[columnIndex].push(cheatBoxes[index]);
-      columnHeights[columnIndex] += height;
+    const calculatedLayout: React.ReactElement[][][] = [[]];
+
+    cheatBoxes.forEach((cheatBox, index) => {
+      const currentCheatBoxHeight = cheatBoxesHeights[index];
+      currentColumnContentHeight += currentCheatBoxHeight;
+
+      if (currentColumnContentHeight > containerHeight) {
+        currentColumnContentHeight = currentCheatBoxHeight;
+        currentColumn++;
+        if (currentColumn >= columnCount) {
+          currentColumn = 0;
+          currentPage++;
+          if (!calculatedLayout[currentPage]) {
+            calculatedLayout[currentPage] = [];
+          }
+        }
+        if (!calculatedLayout[currentPage][currentColumn]) {
+          calculatedLayout[currentPage][currentColumn] = [];
+        }
+      } else if (!calculatedLayout[currentPage][currentColumn]) {
+        calculatedLayout[currentPage][currentColumn] = [];
+      }
+
+      calculatedLayout[currentPage][currentColumn].push(cheatBox);
+      currentColumnContentHeight += cheatBoxSpacing;
     });
 
-    setFinalLayout(columns);
+    setFinalLayout(calculatedLayout);
   }, [
     isMeasuringFinished,
     cheatBoxesHeights,
     cheatBoxes,
     setFinalLayout,
     containerHeight,
+    columnCount,
+    cheatBoxSpacing,
   ]);
 
   return finalLayout;

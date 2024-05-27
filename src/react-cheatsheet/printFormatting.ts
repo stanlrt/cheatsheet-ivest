@@ -22,7 +22,7 @@ type CSSDimensions = {
 
 export const printFormats: Record<PrintFormat, CSSDimensions> = {
   [PrintFormat.A4]: {
-    width: "210mm",
-    height: "297mm",
+    height: "210mm",
+    width: "297mm",
   },
 };
