@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { printFormats, type PrintFormat } from "./printFormatting";
-
-import styles from "./cheat-sheet.module.css";
+import { CheatBox } from "./CheatBox";
 
 type MeasureHeightsReturn = {
   /**
@@ -21,7 +20,7 @@ type MeasureHeightsReturn = {
 };
 
 /**
- * Measure the heights of the cheat boxes after the initial render
+ * Measure the heights of the cheat boxes by using a temporary layout
  * @param cheatBoxes - The cheat boxes to measure
  * @param divRefs - The refs to the cheat boxes
  */
@@ -39,19 +38,13 @@ export function useMeasureHeights({
   const [cheatBoxesHeights, setCheatBoxesHeights] = useState<number[]>([]);
   const [isMeasuringFinished, setIsMeasuringFinished] = useState(false);
 
-  useEffect(() => {
-    const measuredHeights = divRefs.current.map(
-      (div) => div?.offsetHeight || 0
-    );
-    setCheatBoxesHeights(measuredHeights);
-    setIsMeasuringFinished(true);
-  }, [cheatBoxes, divRefs, setCheatBoxesHeights]);
-
-  useEffect(() => {
-    if (containerRef.current) {
-      setContainerHeight(containerRef.current.offsetHeight);
-    }
-  }, [printFormat, containerRef]);
+  useMeasureCheatBoxesHeights(
+    divRefs,
+    setCheatBoxesHeights,
+    setIsMeasuringFinished,
+    cheatBoxes
+  );
+  useMeasurePageHeight(containerRef, setContainerHeight, printFormat);
 
   const temporaryMeasuringLayout = (
     <div
@@ -63,14 +56,10 @@ export function useMeasureHeights({
         height: printFormats[printFormat].height,
       }}
     >
-      {cheatBoxes.map((div, index) => (
-        <div
-          className={styles.cheatBox}
-          key={index}
-          ref={(el) => (divRefs.current[index] = el)}
-        >
-          {div}
-        </div>
+      {cheatBoxes.map((cheatBoxContent, index) => (
+        <CheatBox key={index} ref={(el) => (divRefs.current[index] = el)}>
+          {cheatBoxContent}
+        </CheatBox>
       ))}
     </div>
   );
@@ -81,4 +70,30 @@ export function useMeasureHeights({
     containerHeight,
     isMeasuringFinished,
   };
+}
+function useMeasurePageHeight(
+  containerRef: React.MutableRefObject<HTMLDivElement | null>,
+  setContainerHeight: React.Dispatch<React.SetStateAction<number>>,
+  printFormat: PrintFormat
+) {
+  useEffect(() => {
+    if (containerRef.current) {
+      setContainerHeight(containerRef.current.offsetHeight);
+    }
+  }, [printFormat, containerRef, setContainerHeight]);
+}
+
+function useMeasureCheatBoxesHeights(
+  divRefs: React.MutableRefObject<(HTMLDivElement | null)[]>,
+  setCheatBoxesHeights: React.Dispatch<React.SetStateAction<number[]>>,
+  setIsMeasuringFinished: React.Dispatch<React.SetStateAction<boolean>>,
+  cheatBoxes: React.ReactElement[]
+) {
+  useEffect(() => {
+    const measuredHeights = divRefs.current.map(
+      (div) => div?.offsetHeight || 0
+    );
+    setCheatBoxesHeights(measuredHeights);
+    setIsMeasuringFinished(true);
+  }, [cheatBoxes, divRefs, setCheatBoxesHeights, setIsMeasuringFinished]);
 }

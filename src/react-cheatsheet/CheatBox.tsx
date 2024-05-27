@@ -1,17 +1,27 @@
 import { forwardRef, type Ref } from "react";
 
+import styles from "./cheat-sheet.module.css";
+
 export type CheatBoxProps = {
-  content: React.ReactNode;
+  key: number;
+  children: React.ReactNode;
+  marginBottom?: number;
 };
 
 export const CheatBox = forwardRef(
-  ({ content }: CheatBoxProps, ref: Ref<HTMLDivElement>) => {
+  (
+    { key, children, marginBottom = 0 }: CheatBoxProps,
+    ref: Ref<HTMLDivElement>
+  ) => {
     return (
       <div
+        id={`cheat-box-${key}`}
+        key={key}
         ref={ref}
-        style={{ margin: "10px", padding: "10px", border: "1px solid black" }}
+        className={styles.cheatBox}
+        style={{ marginBottom }}
       >
-        {content}
+        {children}
       </div>
     );
   }

@@ -1,4 +1,5 @@
 import { Fragment, useRef } from "react";
+import { CheatBox } from "./CheatBox";
 import { PrintFormat, printFormats } from "./printFormatting";
 import { useCalculateFinalLayout } from "./useCalculateFinalLayout";
 import { useMeasureHeights } from "./useMeasureHeights";
@@ -26,6 +27,10 @@ type CheatSheetProps = {
    * The print format to be used in the layout. Defaults to A4.
    */
   printFormat?: PrintFormat;
+  /**
+   * Whether to show the page number in the top right corner of each page. Defaults to false.
+   */
+  showPageNumber?: boolean;
 };
 
 /**
@@ -38,6 +43,7 @@ function CheatSheet({
   columnSpacing = 10,
   cheatBoxSpacing = 10,
   printFormat = PrintFormat.A4,
+  showPageNumber = false,
 }: CheatSheetProps) {
   const divRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -61,8 +67,7 @@ function CheatSheet({
     cheatBoxes
   );
 
-  // Used to generate unique ids for the cheat boxes
-  let cheatboxCount = 0;
+  let globalCheatboxCount = 0;
 
   return (
     <>
@@ -70,12 +75,14 @@ function CheatSheet({
         ? temporaryMeasuringLayout
         : finalLayout.map((page, pageIndex) => (
             <Fragment key={pageIndex}>
-              <div
-                id={`page-counter-${pageIndex + 1}`}
-                className={styles.printTopRight}
-              >
-                {pageIndex + 1}
-              </div>
+              {showPageNumber && (
+                <div
+                  id={`page-counter-${pageIndex + 1}`}
+                  className={styles.printTopRight}
+                >
+                  {pageIndex + 1}
+                </div>
+              )}
               <div
                 key={pageIndex}
                 id={`page-${pageIndex}`}
@@ -96,17 +103,15 @@ function CheatSheet({
                       width: `calc(${printFormats[printFormat].width} / ${columnCount})`,
                     }}
                   >
-                    {column.map((cheatBox, index) => {
-                      cheatboxCount++;
+                    {column.map((cheatBoxContent) => {
+                      globalCheatboxCount++;
                       return (
-                        <div
-                          id={`cheat-box-${cheatboxCount}`}
-                          key={index}
-                          className={styles.cheatBox}
-                          style={{ marginBottom: cheatBoxSpacing }}
+                        <CheatBox
+                          key={globalCheatboxCount}
+                          marginBottom={cheatBoxSpacing}
                         >
-                          {cheatBox}
-                        </div>
+                          {cheatBoxContent}
+                        </CheatBox>
                       );
                     })}
                   </div>
