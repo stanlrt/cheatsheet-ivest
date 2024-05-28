@@ -1,5 +1,4 @@
-import { useCallback, useRef } from "react";
-import { CheatBox, type CheatBoxContent } from "./CheatBox";
+import { Fragment, useCallback, useRef, type ReactNode } from "react";
 import { Column } from "./Column";
 import { Page } from "./Page";
 import { PrintFormat } from "./printFormatting";
@@ -8,11 +7,11 @@ import { useMeasureHeights } from "./useMeasureHeights";
 
 type CheatSheetProps = {
   /**
-   * The cheat boxes to be placed in the sheet, top-bottom, left-right, as to not overflow.
+   * The cheat boxes to be laid out in the columns, in a top-bottom left-right manner.
    */
-  cheatBoxes: CheatBoxContent[];
+  cheatBoxes: ReactNode[];
   /**
-   * The number of columns to be used in the layout in pixels. Defaults to 3.
+   * The number of columns. Defaults to 3.
    */
   columnCount?: number;
   /**
@@ -32,16 +31,29 @@ type CheatSheetProps = {
    */
   showPageNumber?: boolean;
   /**
-   * The delay in milliseconds to wait for the heights of the cheat boxes to be measured. Defaults to 10.
+   * The delay in milliseconds to wait for the heights of the cheat boxes to be measured. Defaults to 100.
    *
    * Increase it if the final layout is inconsistent or incorrect. This is due to the time the DOM nodes take to paint during the measurement rendering.
    */
   measurementDelay?: number;
+  /**
+   * The title of the cheat sheet. Defaults to "My Cheatsheet".
+   */
+  title?: string;
 };
 
 /**
  * A print-ready cheat sheet component that takes in a list of cheat boxes and a column count,
  * and returns pages containing columns, where the cheatboxes are placed top-bottom, left-right, as to not overflow.
+ *
+ * @param cheatBoxes        The cheat boxes to be laid out in the columns, in a top-bottom left-right manner.
+ * @param columnCount       Optional. The number of columns. Defaults to 3.
+ * @param columnSpacing     Optional. The spacing between the columns in pixels. Defaults to 10px.
+ * @param cheatBoxSpacing   Optional. The spacing between the cheat boxes in pixels. Defaults to 10px.
+ * @param printFormat       Optional. The print format to be used in the layout. Defaults to A4.
+ * @param showPageNumber    Optional. Whether to show the page number in the top right corner of each page. Defaults to false.
+ * @param measurementDelay  Optional. The delay in milliseconds to wait for the heights of the cheat boxes to be measured. Defaults to 100.
+ * @param title             Optional. The title of the cheat sheet. Defaults to "My Cheatsheet".
  */
 export function CheatSheet({
   cheatBoxes,
@@ -50,9 +62,11 @@ export function CheatSheet({
   cheatBoxSpacing = 10,
   printFormat = PrintFormat.A4,
   showPageNumber = false,
-  measurementDelay = 10,
+  measurementDelay = 100,
+  title = "My Cheatsheet",
 }: CheatSheetProps) {
   const divRefs = useRef<(HTMLDivElement | null)[]>([]);
+  document.title = title;
 
   const { measurementLayout, measurement } = useMeasureHeights({
     cheatBoxes,
@@ -69,23 +83,19 @@ export function CheatSheet({
     cheatBoxes
   );
 
-  const renderCheatBox = useCallback(
-    (cheatBox: CheatBoxContent, index: number, cheatBoxSpacing: number) => (
-      <CheatBox
-        key={index}
-        title={cheatBox.title}
-        index={index}
-        marginBottom={cheatBoxSpacing}
-      >
-        {cheatBox.content}
-      </CheatBox>
+  const renderItemAndSpacing = useCallback(
+    (items: ReactNode, index: number, spacing?: number) => (
+      <Fragment key={index}>
+        {items}
+        {spacing && <div style={{ height: spacing }} />}
+      </Fragment>
     ),
     []
   );
 
   const renderColumn = useCallback(
     (
-      column: CheatBoxContent[],
+      column: ReactNode[],
       colIndex: number,
       printFormat: PrintFormat,
       columnCount: number
@@ -97,15 +107,19 @@ export function CheatSheet({
         columnCount={columnCount}
       >
         {column.map((cheatBox, index) =>
-          renderCheatBox(cheatBox, index, cheatBoxSpacing)
+          renderItemAndSpacing(
+            cheatBox,
+            index,
+            index !== column.length - 1 ? cheatBoxSpacing : undefined
+          )
         )}
       </Column>
     ),
-    [renderCheatBox, cheatBoxSpacing]
+    [renderItemAndSpacing, cheatBoxSpacing]
   );
 
   const renderPage = useCallback(
-    (page: CheatBoxContent[][], pageIndex: number) => (
+    (page: ReactNode[][], pageIndex: number) => (
       <Page
         key={pageIndex}
         pageIndex={pageIndex}

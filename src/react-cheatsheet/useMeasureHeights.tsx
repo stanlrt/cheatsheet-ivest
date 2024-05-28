@@ -1,6 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { printFormats, type PrintFormat } from "./printFormatting";
-import { CheatBox, type CheatBoxContent } from "./CheatBox";
 
 export type HeightsMeasurement = {
   /**
@@ -40,7 +39,7 @@ export function useMeasureHeights({
   columnCount,
   measurementDelay,
 }: {
-  cheatBoxes: CheatBoxContent[];
+  cheatBoxes: ReactNode[];
   divRefs: React.MutableRefObject<(HTMLDivElement | null)[]>;
   printFormat: PrintFormat;
   columnCount: number;
@@ -73,14 +72,9 @@ export function useMeasureHeights({
       }}
     >
       {cheatBoxes.map((cheatBox, index) => (
-        <CheatBox
-          key={index}
-          title={cheatBox.title}
-          index={index}
-          ref={(el) => (divRefs.current[index] = el)}
-        >
-          {cheatBox.content}
-        </CheatBox>
+        <div key={index} ref={(el) => (divRefs.current[index] = el)}>
+          {cheatBox}
+        </div>
       ))}
     </div>
   );
@@ -108,7 +102,7 @@ function useMeasurePageHeight(
 function useMeasureCheatBoxesHeights(
   divRefs: React.MutableRefObject<(HTMLDivElement | null)[]>,
   setMeasurement: React.Dispatch<React.SetStateAction<HeightsMeasurement>>,
-  cheatBoxes: CheatBoxContent[],
+  cheatBoxes: ReactNode[],
   measurementDelay: number
 ) {
   useEffect(() => {

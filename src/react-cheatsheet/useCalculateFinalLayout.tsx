@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import type { HeightsMeasurement } from "./useMeasureHeights";
-import type { CheatBoxContent } from "./CheatBox";
 
 /**
  * Calculate the final layout of the cheat boxes
@@ -12,9 +11,9 @@ export function useCalculateFinalLayout(
   measurement: HeightsMeasurement,
   cheatBoxSpacing: number,
   columnCount: number,
-  cheatBoxes: CheatBoxContent[]
+  cheatBoxes: ReactNode[]
 ) {
-  const [finalLayout, setFinalLayout] = useState<CheatBoxContent[][][]>([]);
+  const [finalLayout, setFinalLayout] = useState<ReactNode[][][]>([]);
 
   useEffect(() => {
     const { cheatBoxesHeights, pageHeight } = measurement;
@@ -25,7 +24,7 @@ export function useCalculateFinalLayout(
     let currentColumn = 0;
     let currentColumnContentHeight = 0;
 
-    const calculatedLayout: CheatBoxContent[][][] = [[]];
+    const calculatedLayout: ReactNode[][][] = [[]];
     console.log("page height ", pageHeight);
 
     cheatBoxes.forEach((cheatBox, index) => {
