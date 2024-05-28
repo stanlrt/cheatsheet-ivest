@@ -9,7 +9,7 @@ type CheatSheetProps = {
   /**
    * The cheat boxes to be laid out in the columns, in a top-bottom left-right manner.
    */
-  cheatBoxes: ReactNode[];
+  content: ReactNode[];
   /**
    * The number of columns. Defaults to 3.
    */
@@ -56,7 +56,7 @@ type CheatSheetProps = {
  * @param title             Optional. The title of the cheat sheet. Defaults to "My Cheatsheet".
  */
 export function CheatSheet({
-  cheatBoxes,
+  content,
   columnCount = 3,
   columnSpacing = 10,
   cheatBoxSpacing = 10,
@@ -69,7 +69,7 @@ export function CheatSheet({
   document.title = title;
 
   const { measurementLayout, measurement } = useMeasureHeights({
-    cheatBoxes,
+    content,
     divRefs,
     printFormat,
     columnCount,
@@ -80,7 +80,7 @@ export function CheatSheet({
     measurement,
     cheatBoxSpacing,
     columnCount,
-    cheatBoxes
+    content
   );
 
   const renderItemAndSpacing = useCallback(

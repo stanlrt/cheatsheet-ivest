@@ -3,7 +3,7 @@ import type { HeightsMeasurement } from "./useMeasureHeights";
 
 /**
  * Calculate the final layout of the cheat boxes
- * @param cheatBoxesHeights - The heights of the cheat boxes
+ * @param contentItemsHeights - The heights of the cheat boxes
  * @param cheatBoxes - The cheat boxes
  * @param setLayout - The function to set the layout
  */
@@ -16,7 +16,7 @@ export function useCalculateFinalLayout(
   const [finalLayout, setFinalLayout] = useState<ReactNode[][][]>([]);
 
   useEffect(() => {
-    const { cheatBoxesHeights, pageHeight } = measurement;
+    const { contentItemsHeights, pageHeight } = measurement;
 
     if (!measurement.isCompleted) return;
 
@@ -28,7 +28,7 @@ export function useCalculateFinalLayout(
     console.log("page height ", pageHeight);
 
     cheatBoxes.forEach((cheatBox, index) => {
-      const currentCheatBoxHeight = cheatBoxesHeights[index];
+      const currentCheatBoxHeight = contentItemsHeights[index];
 
       console.log("Height of cheatBox nr", index, "is ", currentCheatBoxHeight);
 
