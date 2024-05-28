@@ -31,6 +31,12 @@ type CheatSheetProps = {
    * Whether to show the page number in the top right corner of each page. Defaults to false.
    */
   showPageNumber?: boolean;
+  /**
+   * The delay in milliseconds to wait for the heights of the cheat boxes to be measured. Defaults to 10.
+   *
+   * Increase it if the final layout is inconsistent or incorrect. This is due to the time the DOM nodes take to paint during the measurement rendering.
+   */
+  measurementDelay?: number;
 };
 
 /**
@@ -44,6 +50,7 @@ export function CheatSheet({
   cheatBoxSpacing = 10,
   printFormat = PrintFormat.A4,
   showPageNumber = false,
+  measurementDelay = 10,
 }: CheatSheetProps) {
   const divRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -52,6 +59,7 @@ export function CheatSheet({
     divRefs,
     printFormat,
     columnCount,
+    measurementDelay,
   });
 
   const finalLayout = useCalculateFinalLayout(
