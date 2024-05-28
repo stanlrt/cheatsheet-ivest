@@ -1,30 +1,16 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 import ReactDOM from "react-dom/client";
-import CheatSheet from "./react-cheatsheet/CheatSheet.tsx";
-import "./index.css";
+import { CheatSheet } from "./react-cheatsheet/CheatSheet.tsx";
 
-const cheatBoxes = [
-  <div>CheatBox 1</div>,
-  <div style={{ height: "300px" }}>CheatBox 2</div>,
-  <div>CheatBox 3</div>,
-  <div style={{ height: "300px" }}>CheatBox 4</div>,
-  <div>CheatBox 5</div>,
-  <div>CheatBox 6</div>,
-  <div>CheatBox 7</div>,
-  <div>CheatBox 8</div>,
-  <div style={{ height: "300px" }}>CheatBox 9</div>,
-  <div style={{ height: "300px" }}>CheatBox 10</div>,
-  <div style={{ height: "300px" }}>CheatBox 11</div>,
-  <div style={{ height: "300px" }}>CheatBox 12</div>,
-  <div style={{ height: "300px" }}>CheatBox 13</div>,
-  <div style={{ height: "300px" }}>CheatBox 14</div>,
-  <div style={{ height: "300px" }}>CheatBox 15</div>,
-  <div style={{ height: "300px" }}>CheatBox 16</div>,
-  <div>CheatBox 17</div>,
-];
+import "./main.css";
+
+import { all } from "@cheatboxes/all/all.tsx";
+import { transport } from "@cheatboxes/transport/transport.tsx";
+
+const content: ReactNode[] = [...all, ...transport];
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <CheatSheet cheatBoxes={cheatBoxes} />
+    <CheatSheet title="KT Cheatsheet" content={content} />
   </React.StrictMode>
 );

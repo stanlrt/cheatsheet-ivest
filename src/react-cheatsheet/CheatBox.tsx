@@ -15,7 +15,7 @@ export type CheatBoxProps = {
 
 export const CheatBox = forwardRef(
   (
-    { children, marginBottom = 0, title = "" }: CheatBoxProps,
+    { children, marginBottom = 0, title }: CheatBoxProps,
     ref: Ref<HTMLDivElement>
   ) => {
     return (

@@ -62,7 +62,7 @@ export function CheatSheet({
   cheatBoxSpacing = 10,
   printFormat = PrintFormat.A4,
   showPageNumber = false,
-  measurementDelay = 100,
+  measurementDelay = 500,
   title = "My Cheatsheet",
 }: CheatSheetProps) {
   const divRefs = useRef<(HTMLDivElement | null)[]>([]);
