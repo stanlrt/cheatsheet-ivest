@@ -1,7 +1,7 @@
 import { CheatTitle } from "src/react-cheatsheet/CheatTitle";
+import { tcp } from "./tcp";
 import { udp } from "./udp";
 import { udpTcp } from "./udpTcp";
-import { tcp } from "./tcp";
 
 export const transport = [
   <CheatTitle title="Transport" />,

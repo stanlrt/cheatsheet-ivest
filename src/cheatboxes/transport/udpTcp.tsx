@@ -2,6 +2,41 @@ import { CheatBox } from "src/react-cheatsheet/CheatBox";
 
 export const udpTcp = [
   <CheatBox title="UDP&TCP">
+    <h3>Pseudo-header</h3>
+    <table>
+      <tr>
+        <th>Feld</th>
+        <th>Grösse in Bits</th>
+        <th>Beschreibung</th>
+      </tr>
+      <tr>
+        <td>Source IP Address</td>
+        <td>32</td>
+        <td>IP-Adresse des Absenders</td>
+      </tr>
+      <tr>
+        <td>Destination IP Address</td>
+        <td>32</td>
+        <td>IP-Adresse des Empfängers</td>
+      </tr>
+      <tr>
+        <td>Protocol</td>
+        <td>8</td>
+        <td>Protokolltyp (6 für TCP)</td>
+      </tr>
+      <tr>
+        <td>TCP Length</td>
+        <td>16</td>
+        <td>
+          Länge des Datagram (TCP/UDP) inklusive Header und Daten (nicht ganzes
+          IP-Packet)
+        </td>
+      </tr>
+    </table>
+    Damit ist es u.A. möglich, fehlgeleitete Datagramme zu erkennen. Dies kann
+    z.B. auf Grund eines Bit-Flip der Destination Address im Memory eines
+    Routers auftreten
+    <h3>Ports</h3>
     <table>
       <tbody>
         <tr>

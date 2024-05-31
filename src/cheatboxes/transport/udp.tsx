@@ -6,7 +6,7 @@ export const udp = [
     <div
       style={{
         display: "flex",
-        width: "100% !important",
+        width: "100%",
         gap: "0",
       }}
     >
@@ -36,10 +36,6 @@ export const udp = [
         <li>
           <strong>UDP Checksum (16 Bits):</strong> Prüfsumme über einen
           Pseudo-Header, UDP-Header und Daten. Kann Null sein (keine Prüfsumme).
-          Pseudo-Header: IP Source- und Destination Address, Protocol Feld,
-          Länge des Datagramms – Damit ist es u.A. möglich, fehlgeleitete
-          Datagramme zu erkennen – Dies kann z.B. auf Grund eines Bit-Flip der
-          Destination Address im Memory eines Routers auftreten
         </li>
       </ul>
     </div>

@@ -1,8 +1,22 @@
 import { CheatBox } from "src/react-cheatsheet/CheatBox";
 import FullPath from "./FullPath.png";
+import Beziehung from "./beziehung.png";
 
 export const protocols = [
   <CheatBox>
+    <div className="horizontal">
+      <img src={Beziehung} alt="Beziehung" />
+      <ul>
+        <li> Simplex: one station sends, the other receives</li>
+        <li>
+          Half-duplex: one channel where 1st station sends and 2nd receives,
+          other channel where 1st station receives and 2nd sends
+        </li>
+        <li>
+          Full-duplex: one channel where both stations can send and receive
+        </li>
+      </ul>
+    </div>
     <img src={FullPath} />
     <table>
       <tbody>
@@ -13,6 +27,7 @@ export const protocols = [
           <th>Verbindungstyp</th>
           <th>Zuverlässigkeit</th>
           <th>Verkehrsbeziehung</th>
+          <th>Kopplung</th>
         </tr>
         <tr>
           <td>
@@ -21,6 +36,7 @@ export const protocols = [
           <td>Verbindungsorientiert</td>
           <td>Zuverlässig</td>
           <td>Vollduplex</td>
+          <td>Beide</td>
         </tr>
         <tr>
           <td>
@@ -29,6 +45,7 @@ export const protocols = [
           <td>Verbindungsorientiert</td>
           <td>Zuverlässig</td>
           <td>Vollduplex</td>
+          <td>Punkt zu Punkt</td>
         </tr>
         <tr>
           <td>
@@ -37,6 +54,7 @@ export const protocols = [
           <td>Verbindungslos</td>
           <td>Unzuverlässig</td>
           <td>Halbduplex</td>
+          <td>Shared Medium</td>
         </tr>
         <tr>
           <td>
@@ -45,16 +63,21 @@ export const protocols = [
           <td>Verbindungslos</td>
           <td>Unzuverlässig</td>
           <td>Halbduplex</td>
+          <td>Shared Medium</td>
         </tr>
       </tbody>
     </table>
+
     <div>
-      <strong>Multiplexing</strong>: Gathering data from multiple application
-      processes of the sender, enveloping that data with a header, and sending
-      them as a whole to the intended receiver
+      <strong>Multiplexing</strong>: Sammeln von Daten aus mehreren
+      Anwendungsprozessen des Senders, Hinzufügen eines Headers und Senden als
+      Ganzes an die nächste Schicht.
       <br />
-      <strong>Demultiplexing</strong>: Receiving the data and extracting the
-      data from the header to identify the application process
+      <strong>Demultiplexing</strong>: Extrahieren von Daten aus dem Header
+      durch die empfangende Schicht, um den Anwendungsprozess zu identifizieren.
+      <br />
+      Findet auf allen Schichten statt: „Type“ bei Ethernet, „Protocol“ bei IP,
+      „Port“ bei TCP/UDP.
     </div>
   </CheatBox>,
 ];

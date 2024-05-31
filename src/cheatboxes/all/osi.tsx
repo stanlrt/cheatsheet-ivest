@@ -12,7 +12,7 @@ export const osi = [
     <div
       className="horizontal"
       style={{
-        width: "100% !important",
+        width: "100%",
       }}
     >
       <img

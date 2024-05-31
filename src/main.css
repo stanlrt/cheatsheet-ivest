@@ -23,6 +23,7 @@ table {
 img {
   width: 50%;
   height: auto;
+  object-fit: contain;
 }
 
 .horizontal {
@@ -30,6 +31,9 @@ img {
   gap: 10px;
   width: 100% !important;
   box-sizing: border-box;
+}
+.wrap {
+  flex-wrap: wrap;
 }
 
 p {
@@ -41,6 +45,9 @@ ol {
   padding: 0;
   margin: 0;
   margin-left: 8px;
+  li {
+    margin-bottom: 1.2px;
+  }
 }
 
 ul {
