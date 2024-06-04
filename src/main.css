@@ -9,7 +9,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Add this to your CSS file */
 table {
   border: 1px solid black;
   border-collapse: collapse;
@@ -17,6 +16,10 @@ table {
   th,
   td {
     border: 0.6px solid black;
+  }
+
+  td[colspan="2"] {
+    text-align: center;
   }
 }
 
@@ -60,4 +63,14 @@ h2 {
   background-color: #4caf50;
   color: white;
   padding: 2px 4px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+
+  div {
+    width: 100%;
+  }
 }
