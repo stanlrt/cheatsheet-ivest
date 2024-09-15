@@ -5,7 +5,7 @@ import Beziehung from "./beziehung.png";
 export const protocols = [
   <CheatBox>
     <div className="horizontal">
-      <img src={Beziehung} alt="Beziehung" />
+      <img src={Beziehung} alt="Beziehung" style={{ width: "75%" }} />
       <ul>
         <li> Simplex: one station sends, the other receives</li>
         <li>
@@ -18,6 +18,8 @@ export const protocols = [
       </ul>
     </div>
     <img src={FullPath} />
+  </CheatBox>,
+  <CheatBox title="Protokolle">
     <table>
       <tbody>
         <tr>
@@ -34,7 +36,7 @@ export const protocols = [
             <strong>Ethernet</strong>
           </td>
           <td>Verbindungsorientiert</td>
-          <td>Zuverlässig</td>
+          <td>Unzuverlässig</td>
           <td>Vollduplex</td>
           <td>Beide</td>
         </tr>

@@ -13,6 +13,19 @@ import tap from "./tap.png";
 import mirror from "./mirror.png";
 
 export const lan = [
+  <CheatBox title="MAC">
+    6 bytes, regelmassig geändert, in bytes LSB→MSB.
+    <div className="horizontal">
+      <div>
+        <img src={macParts} />
+        Hersteller ID eindeutig, Hersteller nummer eindeutig fur Hersteller
+      </div>
+      <div>
+        <img src={macClass} style={{ width: "80%" }} />
+        Bit 1 & 2 fr Klassifierung (meistens 00)
+      </div>
+    </div>
+  </CheatBox>,
   <CheatBox title="LAN Topologie">
     <table>
       <thead>
@@ -98,19 +111,7 @@ export const lan = [
       </tbody>
     </table>
   </CheatBox>,
-  <CheatBox title="MAC">
-    6 bytes, regelmassig geändert, in bytes LSB→MSB.
-    <div className="horizontal">
-      <div>
-        <img src={macParts} />
-        Hersteller ID eindeutig, Hersteller nummer eindeutig fur Hersteller
-      </div>
-      <div>
-        <img src={macClass} />
-        Bit 1 & 2 für Klassifierung (meistens 00)
-      </div>
-    </div>
-  </CheatBox>,
+
   <CheatBox title="LAN Redundanz & Loop">
     Redundante Pfad → Loop → Frames ohne bekannte Empfängers-Adresse
     (Broadcasts) laufen unendlich
@@ -162,20 +163,21 @@ export const lan = [
       <div>
         <img src={multiport} style={{ width: "100%" }} />
         <p>
-          Switch port sends frames to a hub than then sends it to the stations
-          in LAN, including monitoring station (C)
+          Multiport Hub: Switch port sends frames to a hub than then sends it to
+          the stations in LAN, including monitoring station (C)
         </p>
         <p>Pros: All data visible on all ports</p>
         <p>Cons: Changes situation, A and B must be half-duplex</p>
       </div>
       <div>
         <img src={tap} style={{ width: "100%" }} />
+        Tap
       </div>
       <div>
         <img src={mirror} style={{ width: "100%" }} />
         <p>
-          Switch sends all data from mirrored port (P2) to an extra mirroring
-          port (P6). Mirrored frames are tagged.
+          Mirroring: Switch sends all data from mirrored port (P2) to an extra
+          mirroring port (P6). Mirrored frames are tagged.
         </p>
         <p>Pros: Low-level details visible</p>
         <p>Cons: Costs, latency</p>

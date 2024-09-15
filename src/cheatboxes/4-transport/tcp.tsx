@@ -45,10 +45,8 @@ export const tcp = [
     </ol> */}
 
     <img src={TCPStartExample} />
-    <div className="horizontal">
-      <img src={TCPSetupDiagram} />
-      <img src={TCPStartFSM} />
-    </div>
+    <img src={TCPSetupDiagram} style={{ width: "70%" }} />
+    <img src={TCPStartFSM} style={{ width: "70%" }} />
   </CheatBox>,
   <CheatBox title="TCP Data transfer">
     <p>
@@ -133,11 +131,8 @@ export const tcp = [
       </li>
     </ul>
     <img src={TCPEndExample} />
-
-    <div className="horizontal">
-      <img src={TCPEndDiagram} />
-      <img src={TCPEndFSM} />
-    </div>
+    <img src={TCPEndDiagram} style={{ width: "70%" }} />
+    <img src={TCPEndFSM} style={{ width: "70%" }} />
   </CheatBox>,
 
   <CheatBox title="TCP Summary">
@@ -179,7 +174,7 @@ export const tcp = [
           </li>
         </ol>
       </div>
-      <img src={TCPSummaryFSM} />
+      <img src={TCPSummaryFSM} style={{ width: "70%" }} />
     </div>
     <table>
       <tr>

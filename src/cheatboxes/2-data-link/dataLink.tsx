@@ -38,8 +38,9 @@ export const dataLink = [
         <img src={frameSync} style={{ width: "100%" }} /> <br />
         Keine Daten zu senden → Flags <br />
         <img src={framingSync} style={{ width: "100%" }} /> <br />
-        Flag ist ein Bitmuster (bsp: 01111110). Bitstuffing: Sender fgt nach 5
-        Eisen immer 1 Null. Empfänger wirft nach 5 Eisen 1 Bit weg.
+        Flag ist ein Bitmuster (bsp: 01111110). Bitstuffing: Sender f+ugt in
+        Daten nach 5 Eisen immer 1 Null, damit Flag nie vorkommt. Empfänger
+        wirft nach 5 Eisen 1 Bit weg.
       </div>
     </div>
   </CheatBox>,

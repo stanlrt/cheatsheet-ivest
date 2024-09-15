@@ -120,21 +120,25 @@ export const vlan = [
         </tr>
       </table>
     </div>
+  </CheatBox>,
+  <CheatBox title="Priority">
     <div className="horizontal">
-      <img src={prio} />
-      <p>
-        3 bits 000 → 0...7 Prio-Levels (voice{">"}video{">"}best effort{">"}
-        background)
-      </p>
-      <p>
-        Each port has up to 8 queues where frames are put depending on their
-        prio.
-      </p>
-      <p>
-        <strong>Strict priority startegy:</strong> Frames from queue 0 sent
-        first, then queue 1…
-      </p>
+      <img src={prio} style={{ width: "40%" }} />
+      <div>
+        <p>
+          3 bits 000 → 0...7 Prio-Levels (voice{">"}video{">"}best effort{">"}
+          background)
+        </p>
+        <p>
+          Each port has up to 8 queues where frames are put depending on their
+          prio.
+        </p>
+        <p>
+          <strong>Strict priority startegy:</strong> Frames from queue 0 sent
+          first, then queue 1…
+        </p>
+        <img src={lanChar} style={{ width: "100%" }} />
+      </div>
     </div>
-    <img src={lanChar} style={{ width: "40%" }} />
   </CheatBox>,
 ];

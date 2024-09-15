@@ -42,54 +42,56 @@ export const nat = [
   </CheatBox>,
 
   <CheatBox title="NAPT Auflösungsschritte">
-    <div className="horizontal">
-      <ol>
-        <li>
-          <strong>Originalpaket vom lokalen Host:</strong> Der Host im privaten
-          Netzwerk (z.B. 192.168.0.10) sendet ein Paket mit seiner eigenen
-          IP-Adresse als Quelladresse und einem bestimmten Quellport.
-          <br />
-          <code>Source IP: 192.168.0.10, Source Port: 12345</code>
-        </li>
-        <li>
-          <strong>Ersetzen der Quelladresse und des Quellports:</strong> Der
-          NAT-Router ersetzt die lokale Quelladresse durch die öffentliche
-          IP-Adresse und den Quellport durch einen eindeutigen freien Port.
-          <br />
-          <code>Source IP: 160.85.17.11, Source Port: 54321</code>
-        </li>
-        <li>
-          <strong>Speichern der Zuordnung:</strong> Die Zuordnung zwischen der
-          ursprünglichen und der ersetzten Adresse/Port wird in einer
-          NAT-Tabelle gespeichert.
-        </li>
-        <li>
-          <strong>Weiterleitung des Pakets:</strong> Das modifizierte Paket wird
-          an das Ziel im Internet gesendet.
-          <br />
-          <code>Destination IP: 8.8.8.8, Destination Port: 80</code>
-        </li>
-        <li>
-          <strong>Rückkehr des Pakets:</strong> Das Ziel sendet ein Antwortpaket
-          zurück an die öffentliche IP-Adresse und den zugeordneten Port des
-          NAT-Routers.
-          <br />
-          <code>Destination IP: 160.85.17.11, Destination Port: 54321</code>
-        </li>
-        <li>
-          <strong>Umkehr der Übersetzung:</strong> Der NAT-Router verwendet die
-          NAT-Tabelle, um die ursprüngliche Quelladresse und den ursprünglichen
-          Quellport wiederherzustellen.
-          <br />
-          <code>Destination IP: 192.168.0.10, Destination Port: 12345</code>
-        </li>
-        <li>
-          <strong>Zustellung an den lokalen Host:</strong> Das Paket wird an den
-          ursprünglichen Host im lokalen Netzwerk zugestellt.
-        </li>
-      </ol>
-      <img src={NATSteps} alt="NAT Auflösungsschritte Diagramm" />
-    </div>
+    <ol>
+      <li>
+        <strong>Originalpaket vom lokalen Host:</strong> Der Host im privaten
+        Netzwerk (z.B. 192.168.0.10) sendet ein Paket mit seiner eigenen
+        IP-Adresse als Quelladresse und einem bestimmten Quellport.
+        <br />
+        <code>Source IP: 192.168.0.10, Source Port: 12345</code>
+      </li>
+      <li>
+        <strong>Ersetzen der Quelladresse und des Quellports:</strong> Der
+        NAT-Router ersetzt die lokale Quelladresse durch die öffentliche
+        IP-Adresse und den Quellport durch einen eindeutigen freien Port.
+        <br />
+        <code>Source IP: 160.85.17.11, Source Port: 54321</code>
+      </li>
+      <li>
+        <strong>Speichern der Zuordnung:</strong> Die Zuordnung zwischen der
+        ursprünglichen und der ersetzten Adresse/Port wird in einer NAT-Tabelle
+        gespeichert.
+      </li>
+      <li>
+        <strong>Weiterleitung des Pakets:</strong> Das modifizierte Paket wird
+        an das Ziel im Internet gesendet.
+        <br />
+        <code>Destination IP: 8.8.8.8, Destination Port: 80</code>
+      </li>
+      <li>
+        <strong>Rückkehr des Pakets:</strong> Das Ziel sendet ein Antwortpaket
+        zurück an die öffentliche IP-Adresse und den zugeordneten Port des
+        NAT-Routers.
+        <br />
+        <code>Destination IP: 160.85.17.11, Destination Port: 54321</code>
+      </li>
+      <li>
+        <strong>Umkehr der Übersetzung:</strong> Der NAT-Router verwendet die
+        NAT-Tabelle, um die ursprüngliche Quelladresse und den ursprünglichen
+        Quellport wiederherzustellen.
+        <br />
+        <code>Destination IP: 192.168.0.10, Destination Port: 12345</code>
+      </li>
+      <li>
+        <strong>Zustellung an den lokalen Host:</strong> Das Paket wird an den
+        ursprünglichen Host im lokalen Netzwerk zugestellt.
+      </li>
+    </ol>
+    <img
+      src={NATSteps}
+      alt="NAT Auflsungsschritte Diagramm"
+      style={{ width: "85%" }}
+    />
   </CheatBox>,
 
   <CheatBox title="Probleme mit NAT">

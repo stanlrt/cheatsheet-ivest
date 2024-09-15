@@ -112,7 +112,7 @@ export const fehler = [
             <td>Ungerade # Fehler</td>
             <td>0</td>
             <td>
-              <img src={parity} />
+              <img src={parity} style={{ width: "90%" }} />
             </td>
           </tr>
           <tr>
@@ -124,7 +124,7 @@ export const fehler = [
             </td>
             <td>Mindestens 1</td>
             <td>
-              <img src={langQuer} />
+              <img src={langQuer} style={{ width: "80%" }} />
             </td>
           </tr>
           <tr>
@@ -135,7 +135,7 @@ export const fehler = [
             <td>1</td>
             <td>0</td>
             <td>
-              <img src={checksum} />
+              <img src={checksum} style={{ width: "90%" }} />
             </td>
           </tr>
           <tr>
@@ -146,7 +146,7 @@ export const fehler = [
             <td>Kommt an</td>
             <td>0</td>
             <td>
-              <img src={crc32} />
+              <img src={crc32} style={{ width: "60%" }} />
             </td>
           </tr>
         </tbody>

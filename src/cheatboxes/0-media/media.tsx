@@ -150,7 +150,9 @@ export const media = [
     </table>
     <div className="horizontal">
       <ul>
-        <h3>Mögliche Bezeichnungen:</h3>
+        <p>
+          <b>Mögliche Bezeichnungen</b>:
+        </p>
         <li>
           <b>U:</b> ungeschirmt
         </li>
@@ -164,8 +166,7 @@ export const media = [
           <b>SF:</b> Schirm aus Geflecht und Folie
         </li>
       </ul>
-
-      <h3>Beispiele:</h3>
+      {/* <h3>Beispiele:</h3>
       <table>
         <tr>
           <th>Bezeichnung</th>
@@ -195,7 +196,7 @@ export const media = [
             Gesamtschirmung aus Geflecht und Folie, ungeschirmte Adernpaare.
           </td>
         </tr>
-      </table>
+      </table> */}
     </div>
     <table>
       <tr>
@@ -214,7 +215,7 @@ export const media = [
         <td>Induktiver</td>
         <td>Verdrillung (Twisting)</td>
         <td>
-          <img src={twisting} />
+          <img src={twisting} style={{ width: "75%" }} />
         </td>
       </tr>
     </table>
@@ -266,7 +267,7 @@ export const media = [
         <li>Kern: Brechungsindex 1.5</li>
         <li>Mantel: Brechungsindex 1.48</li>
       </ul>
-      <img src={lightCalc} />
+      <img src={lightCalc} style={{ width: "60%" }} />
     </div>
     <MathLatex>{`200000km \\cdot s^{-1} = 20 cm \\cdot ns^{-1} = 5 ns \\cdot m^{-1}`}</MathLatex>
     <table>

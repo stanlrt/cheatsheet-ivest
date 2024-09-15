@@ -18,7 +18,7 @@ export const osi = [
       <img
         src={Layers}
         style={{
-          width: "50%",
+          width: "80%",
           height: "auto",
         }}
       />

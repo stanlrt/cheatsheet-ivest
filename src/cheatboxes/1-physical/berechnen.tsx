@@ -68,12 +68,14 @@ export const berechnen = [
     </table>
     <div className="horizontal">
       <img src={einUb} alt="Baud" />
-      <ul>
-        <li>Baudrate: 1kBaud weil 1 Symbole / Millisek.</li>
-        <li>Bit/Symbol: 2</li>
-        <li>Bitrate: 2000 Bit/s</li>
-        <li>Tragerfrequenz: 4 kHz</li>
-      </ul>
+      <ol>
+        <li>Tragerfrequenz (Bandbreite): 4 kHz</li>
+        <li>
+          Baudrate: 1kBaud weil 1 Symbole / Millisek. (Sonst: Nyquist nutzen)
+        </li>
+        <li>Bit/Symbol: 2 (log(Codierung-Wert))</li>
+        <li>Bitrate: 2000 Bit/s (Baudrate * Bit/Symbol)</li>
+      </ol>
     </div>
   </CheatBox>,
   <CheatBox title="Kanalkapazität finden">
@@ -122,18 +124,26 @@ export const berechnen = [
       <strong>
         Finde max. Kanalkapazität R in realer Übertragungsmedia (Shannon):
       </strong>{" "}
-      <br />
-      <MathLatex>{`C_s \\leq B \\cdot log_2(1 + \\frac{S}{N})`}</MathLatex>{" "}
-      <br />
-      wo:
-      <ul>
-        <li>
-          C<sub>s</sub>: Kanalkapazität
-        </li>
-        <li>B: Bandbreite (Hz)</li>
-        <li>S: Signal (W)</li>
-        <li>N: Noise (W)</li>
-      </ul>
+      <div className="horizontal">
+        <MathLatex>{`C_s \\leq B \\cdot log_2(1 + \\frac{S}{N})`}</MathLatex>{" "}
+        <div>
+          wo:
+          <ul
+            style={{
+              display: "flex",
+              gap: "10px",
+              padding: 0,
+            }}
+          >
+            <li>
+              C<sub>s</sub>: Kanalkapazität
+            </li>
+            <li>B: Bandbreite (Hz)</li>
+            <li>S: Signal (W)</li>
+            <li>N: Noise (W)</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </CheatBox>,
 ];

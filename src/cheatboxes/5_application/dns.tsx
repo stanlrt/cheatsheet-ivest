@@ -4,12 +4,10 @@ import DNSRecordTypes from "./dnsRecordTypes.png";
 
 export const dns = [
   <CheatBox>
-    <div className="horizontal">
-      <img src={DNS} />
-      <div>
-        <p>DNS Record Types</p>
-        <img style={{ width: "100%" }} src={DNSRecordTypes} />
-      </div>
+    <img src={DNS} style={{ width: "70%" }} />
+    <div>
+      <p>DNS Record Types</p>
+      <img style={{ width: "100%" }} src={DNSRecordTypes} />
     </div>
     <ol style={{ paddingTop: "10px", columnCount: 2, columnGap: "10px" }}>
       <li>

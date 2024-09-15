@@ -8,22 +8,18 @@ import pam3Table from "./pam3Table.png";
 
 export const serielSynch = [
   <CheatBox title="Seriell synchron">
-    <div className="horizontal">
-      <div>
-        <ul>
-          <li>
-            S sendet nicht nur Daten, sondern auch Clock (Takt), in 2 oder 1
-            Signal
-          </li>
-          <li>E macht Taktrückgewinnnung um sein Clock zu synchronisieren</li>
-        </ul>
-      </div>
-      <img src={Synch} alt="Synch" />
+    <div>
+      <ul>
+        <li>
+          S sendet nicht nur Daten, sondern auch Clock (Takt), in 2 oder 1
+          Signal
+        </li>
+        <li>E macht Taktrückgewinnnung um sein Clock zu synchronisieren</li>
+      </ul>
     </div>
-    <div className="horizontal">
-      <img src={TaktRueckDet} />
-      <img src={TaktRueck} />
-    </div>
+    <img src={Synch} alt="Synch" style={{ width: "75%" }} />
+    <img src={TaktRueckDet} style={{ width: "75%" }} />
+    <img src={TaktRueck} style={{ width: "75%" }} />
   </CheatBox>,
   <CheatBox title="Seriell Codierung">
     <div>
@@ -33,12 +29,12 @@ export const serielSynch = [
           <strong>Probleme:</strong> 3 Werten → nicht binär, lange 0-Folge →
           keine Taktrück.
         </p>
-        <img src={ami} />
+        <img src={ami} style={{ width: "60%" }} />
       </div>
       <div className="horizontal">
         <p>
           <h4>PAM3 (10BASE-T1L)</h4>
-          4B3T-Codierung: Codiere 4 Bit Werten (0,1) (→ 16 mögliche Symbole i.e.
+          4B3T-Codierung: Codiere 4 Bit Werten (0,1) (→ 16 mgliche Symbole i.e.
           HEX) mit 3 ternäre Werten (-,0,+) (→ 27 mögliche Symbole) und Acc. DC
           Offset
           <ul>
@@ -48,10 +44,10 @@ export const serielSynch = [
             <li>0011: --0 weil DCOffset = 4, dann DCOffset-=2</li>
           </ul>
         </p>
-        <div className="horizontal">
-          <img src={pam3Signal} />
-          <img src={pam3Table} />
-        </div>
+      </div>
+      <div className="horizontal">
+        <img src={pam3Signal} style={{ width: "50%" }} />
+        <img src={pam3Table} style={{ width: "50%" }} />
       </div>
     </div>
   </CheatBox>,

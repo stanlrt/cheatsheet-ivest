@@ -27,7 +27,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <CheatSheet
       title="KT Cheatsheet"
       content={content}
-      measurementDelay={700}
+      measurementDelay={500}
+      columnCount={3}
     />
   </React.StrictMode>
 );

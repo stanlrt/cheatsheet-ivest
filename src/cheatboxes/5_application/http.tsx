@@ -44,7 +44,7 @@ export const http = [
     </ul>
   </CheatBox>,
   <CheatBox title="HTTP Anfragen und Antworten">
-    <img src={HTTPSequence} style={{ width: "70%" }} />
+    <img src={HTTPSequence} style={{ width: "100%" }} />
     <div className="horizontal">
       <div>
         <p>

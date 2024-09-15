@@ -5,7 +5,7 @@ import { MathLatex } from "src/react-cheatsheet/MathLatex";
 export const serielAsynch = [
   <CheatBox title="Seriell asynchron">
     <div className="horizontal">
-      <img src={Asynch} alt="Asynch" />
+      <img src={Asynch} alt="Asynch" style={{ width: "70%" }} />
       <ul>
         <li>S und E haben unabhängige Clocks</li>
         <li>Synchronisation vor jedes Frame dank Start+Stop-Bits</li>
@@ -17,11 +17,11 @@ export const serielAsynch = [
         <li>
           Stop-Bits = <strong>111</strong>
         </li>
+        <li>
+          <MathLatex>{`T_{bit} = \\frac{1}{Baudrate}`}</MathLatex> wie viele
+          Takte pro Bit
+        </li>
       </ul>
-      <span>
-        <MathLatex>{`T_{bit} = \\frac{1}{Baudrate}`}</MathLatex> wie viele Takte
-        pro Bit
-      </span>
     </div>
     <div className="horizontal">
       <div style={{ width: "50%" }}>
@@ -57,6 +57,7 @@ export const serielAsynch = [
             <MathLatex>{`104.17 \\ μs \\cdot 12 \\cdot 10^{-4} = 0.10417 \\ μs`}</MathLatex>
           </li>
         </ol>
+        Max. erlaubt Frequ. Drift in % = 0.5 / Framegrösse-0.5
       </div>
     </div>
   </CheatBox>,

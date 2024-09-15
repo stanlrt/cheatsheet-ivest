@@ -117,6 +117,10 @@ export const all = [
           <td>1024</td>
         </tr>
       </table>
+      <p>
+        Codierung requ.: Gleichspannungsfreiheit (wegen galvanische Trennung),
+        Taktrückgewinnung, max. Frequenz, genügend häufige Pegeländerungen
+      </p>
     </div>
   </CheatBox>,
 ];

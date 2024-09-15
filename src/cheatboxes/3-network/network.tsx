@@ -10,18 +10,24 @@ import icmpFrame from "./icmpFrame.png";
 import { ip } from "./ip/ip";
 
 export const network = [
+  <div style={{ height: "50px" }} />,
   <CheatTitle title="3 - Network" />,
   <CheatBox title="Aufgaben, Grundsätze & vs OSI">
-    <div className="horizontal">
-      <ul>
+    <div
+      className="horizontal"
+      style={{ display: "flex", justifyContent: "space-between" }}
+    >
+      <ul style={{ flex: "1", marginRight: "20px" }}>
         <strong>Aufgaben</strong>
         <li>Netze verbinden und ihre Besonderheiten verbergen</li>
-        <li>Netzweite Adressierung </li>
+        <li>Netzweite Adressierung</li>
         <li>Nachführen der Routing Informationen</li>
         <li>Ermitteln des optimalen Weges</li>
         <li>Weiterleiten der Daten über den festgelegten Weg</li>
         <li>NICHT: Fehlerkorrektur, Reihenfolgebehaltung, Flusstseuerung</li>
-        <strong>Grundätze</strong>
+      </ul>
+      <ul style={{ flex: "1" }}>
+        <strong>Grundsätze</strong>
         <li>Jedes Netzwerk soll für sich selbst funktionsfähig sein</li>
         <li>
           Für den Anschluss ans Internet soll{" "}
@@ -30,21 +36,21 @@ export const network = [
         <li>
           Die Kommunikation basiert auf "best effort": Schafft es ein Paket
           nicht bis zum Ziel, so soll es (falls notwendig){" "}
-          <strong>nach kurzer Zeit von der Quelle nochmals bertragen</strong>{" "}
+          <strong>nach kurzer Zeit von der Quelle nochmals übertragen</strong>{" "}
           werden
         </li>
         <li>
-          Netzverbindungen erfolgen durch Routers, die keine Informationen über
+          Netzverbindungen erfolgen durch Router, die keine Informationen über
           Paketflüsse sammeln und sich dadurch einfach und schnell von Fehlern
           erholen können.
         </li>
         <li>
-          Es soll <strong>keine zentrale Funktionssteuerung</strong> bentigt
+          Es soll <strong>keine zentrale Funktionssteuerung</strong> benötigt
           werden
         </li>
       </ul>
-      <img src={osiTcpIp} />
     </div>
+    <img src={osiTcpIp} />
   </CheatBox>,
   <CheatBox title="Router">
     Router hat für jeden Netztyp ein Interface. Router ist normaler Knoten des
@@ -146,10 +152,8 @@ export const network = [
       <li>a sendet Ethernet frame (mit enkapsulierte IP-Packet)</li>
       <li>a speichert MAC-Adresse von AB in ARP-Tabelle</li>
     </ol>
-    <div className="horizontal">
-      <img src={arpFrame} />
-      <img src={arpSequ} />
-    </div>
+    <img src={arpFrame} />
+    <img src={arpSequ} />
   </CheatBox>,
   <CheatBox title="ICMP (Internet Control Message Protocol)">
     Zur Kommunikation zwischen Hosts und Router verwendet. Keine Garantie, dass

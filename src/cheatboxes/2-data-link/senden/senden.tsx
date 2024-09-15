@@ -1,7 +1,7 @@
 import { CheatBox } from "src/react-cheatsheet/CheatBox";
 
 export const senden = [
-  <CheatBox title="Medien-Zugriff">
+  <CheatBox title="MAC Medien-Zugriff">
     <div className="grid">
       <div>
         <h3>Master-Slave</h3>

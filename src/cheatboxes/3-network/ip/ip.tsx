@@ -10,11 +10,12 @@ import header from "./6header.png";
 import optHeaders from "./optHeaders.png";
 import bspHeaders from "./bspHeaders.png";
 import v6addr from "./v6addr.png";
+import binaryDecimal from "./binaryDecimal.png";
 
 export const ip = [
   <CheatBox title="IP Addressing">
     <div className="horizontal">
-      <div>
+      <div style={{ width: "40%" }}>
         <p>
           4 bytes, Netz-Adr. + Interface/Host-Adr. Netz-Adr. = Netz-ID +
           Interface-ID
@@ -24,8 +25,8 @@ export const ip = [
           Netz-Adr.: alle Host-Bits sind 0 (→2<sup>x</sup>)
         </p>
       </div>
-      <div>
-        <img src={classes} />
+      <div style={{ width: "60%" }}>
+        <img src={classes} style={{ width: "80%" }} />
         <p>D: 224.0.0.0 - 239.255.255.255</p>
         <p>E: 240.0.0.0 - 255.255.255.255</p>
       </div>
@@ -33,11 +34,10 @@ export const ip = [
   </CheatBox>,
   <CheatBox title="IP Header">
     <div className="horizontal">
-      <div style={{ display: "flex", flexDirection: "column", width: "50%" }}>
+      <div style={{ display: "flex", flexDirection: "column", width: "60%" }}>
         <img src={ipHeader} style={{ width: "100%" }} />
-        <img src={ipMasks} style={{ width: "100%" }} />,
       </div>
-      <table style={{ width: "50%" }}>
+      <table style={{ width: "40%" }}>
         <tr>
           <th></th>
           <th>Byte</th>
@@ -105,6 +105,8 @@ export const ip = [
         </tr>
       </table>
     </div>
+    <img src={ipMasks} style={{ width: "100%" }} />
+    <img src={binaryDecimal} style={{ width: "100%" }} />
   </CheatBox>,
   <CheatBox title="IP Fragmentierung">
     <p>Fragmente sind IP Packets (Header+Daten)</p>

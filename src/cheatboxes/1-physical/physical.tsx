@@ -51,7 +51,7 @@ export const physical = [
       </tbody>
     </table>
   </CheatBox>,
-  ...serielSynch,
   ...serielAsynch,
+  ...serielSynch,
   ...berechnen,
 ];

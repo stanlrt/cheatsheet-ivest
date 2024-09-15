@@ -5,6 +5,8 @@ import baseTNaming from "./baseTNaming.png";
 import baseTTopo from "./baseTTopo.png";
 import flp from "./flp.png";
 import crossover from "./crossover.png";
+import B5B from "./4B5B.png";
+import delim from "./delim.png";
 
 export const ethernet = [
   <CheatBox title="Ethernet Frame">
@@ -68,7 +70,7 @@ export const ethernet = [
           <tr>
             <th>Total</th>
             <td>
-              72-1526 (Sendedauer) <br /> 64-1518 (Frame)
+              72-1526 (+Phys, no Gap) <br /> 64-1518 (Frame)
             </td>
             <td>Gesamtanzahl der Bytes im Frame</td>
           </tr>
@@ -168,7 +170,7 @@ export const ethernet = [
   <CheatBox title="BASE-T">
     <div className="horizontal">
       Naming: <img src={baseTNaming} style={{ width: "30%" }} />
-      Topo: <img src={baseTTopo} style={{ width: "30%" }} />
+      Topo: <img src={baseTTopo} style={{ width: "50%" }} />
     </div>
     {/* <div className="horizontal"> */}
     Autonegociation:{" "}
@@ -178,10 +180,32 @@ export const ethernet = [
         NLP (Normal): 1 bit jede 16ms → Half-Duplex 10BASE-T (backward-comp.)
       </li>
       <li>
-        FLP (Fast): 16 bits jede 16ms → <img src={flp} />
+        FLP (Fast): 16 bits jede 16ms →{" "}
+        <img src={flp} style={{ width: "60%" }} />
       </li>
     </ul>
     Crossover & polarity: <img src={crossover} />
     {/* </div> */}
+  </CheatBox>,
+  <CheatBox title="100BASE-TX on CAT5">
+    <div>
+      <p>NRZI: Spannungsänderung → 1</p>
+      <p>MLT-3: ternary (3 Spannungsniveaus) → 125MBaud → 1 Symbol = 8ns</p>
+      <br />
+      <p> </p>
+    </div>
+    <div className="horizontal">
+      <div>
+        Framing: Byte 1 in Preamble = J/K, T/R nach Frame, I interframe
+        <img src={delim} style={{ width: "100%" }} />
+      </div>
+      <div>
+        <p>
+          4B5B: 4 Bits des MII (Zeichen) werden mit einem 5 Bit-Zeichen (Code
+          Group) auf der Leitung codiert
+        </p>
+        <img src={B5B} style={{ width: "100%" }} />
+      </div>
+    </div>
   </CheatBox>,
 ];
