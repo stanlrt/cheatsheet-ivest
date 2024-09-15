@@ -1,13 +1,9 @@
 import { CheatTitle } from "src/react-cheatsheet/CheatTitle";
-import { protocols } from "./protocols";
-import { osi } from "./osi";
 import { CheatBox } from "src/react-cheatsheet/CheatBox";
 
-export const all = [
-  <CheatTitle title="All" />,
-  ...osi,
-  ...protocols,
-  <CheatBox title="Einheiten">
+export const example = [
+  <CheatTitle title="Example" />,
+  <CheatBox title="Example">
     <div className="horizontal">
       <table>
         <tr>
@@ -117,10 +113,6 @@ export const all = [
           <td>1024</td>
         </tr>
       </table>
-      <p>
-        Codierung requ.: Gleichspannungsfreiheit (wegen galvanische Trennung),
-        Taktrückgewinnung, max. Frequenz, genügend häufige Pegeländerungen
-      </p>
     </div>
   </CheatBox>,
 ];
