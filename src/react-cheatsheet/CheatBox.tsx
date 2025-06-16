@@ -11,11 +11,12 @@ export type CheatBoxProps = {
   title?: string;
   children: React.ReactNode;
   marginBottom?: number;
+  style?: React.CSSProperties;
 };
 
 export const CheatBox = forwardRef(
   (
-    { children, marginBottom = 0, title }: CheatBoxProps,
+    { children, marginBottom = 0, title, style }: CheatBoxProps,
     ref: Ref<HTMLDivElement>
   ) => {
     return (
@@ -23,7 +24,7 @@ export const CheatBox = forwardRef(
         id={`cheat-box`}
         ref={ref}
         className={styles.cheatBox}
-        style={{ marginBottom }}
+        style={{ marginBottom, ...style }}
       >
         {title && <div className={styles.title}>{title}</div>}
         {children}

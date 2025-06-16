@@ -35,6 +35,14 @@ img {
   width: 100% !important;
   box-sizing: border-box;
 }
+
+.vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100% !important;
+  box-sizing: border-box;
+}
 .wrap {
   flex-wrap: wrap;
 }

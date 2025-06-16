@@ -3,9 +3,21 @@ import ReactDOM from "react-dom/client";
 import { CheatSheet } from "./react-cheatsheet/CheatSheet.tsx";
 
 import "./main.css";
-import { example } from "@cheatboxes/_all/default.tsx";
+import { bilanz } from "@cheatboxes/1_bilanz/bilanz.tsx";
+import { glossary } from "@cheatboxes/glossary.tsx";
+import { CheatTitle } from "./react-cheatsheet/CheatTitle.tsx";
+import { erfolg } from "@cheatboxes/2_erfolg/ergfolg.tsx";
+import { cashflow } from "@cheatboxes/3_cashflow/cashflow.tsx";
+import { invest } from "@cheatboxes/investitionsrechnung/invest.tsx";
 
-const content = [...example];
+const content = [
+  <CheatTitle title="Buchhaltung" />,
+  ...bilanz,
+  ...erfolg,
+  ...cashflow,
+  ...invest,
+  ...glossary,
+];
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
