@@ -8,7 +8,8 @@ import { glossary } from "@cheatboxes/glossary.tsx";
 import { CheatTitle } from "./react-cheatsheet/CheatTitle.tsx";
 import { erfolg } from "@cheatboxes/2_erfolg/ergfolg.tsx";
 import { cashflow } from "@cheatboxes/3_cashflow/cashflow.tsx";
-import { invest } from "@cheatboxes/investitionsrechnung/invest.tsx";
+import { invest } from "@cheatboxes/4_investitionsrechnung/invest.tsx";
+import { finanzierung } from "@cheatboxes/5_financing/finance.tsx";
 
 const content = [
   <CheatTitle title="Buchhaltung" />,
@@ -16,6 +17,7 @@ const content = [
   ...erfolg,
   ...cashflow,
   ...invest,
+  ...finanzierung,
   ...glossary,
 ];
 

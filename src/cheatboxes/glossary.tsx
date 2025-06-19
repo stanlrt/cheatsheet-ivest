@@ -316,6 +316,62 @@ const glossaryEntries: GlossaryEntry[] = [
     definition: "Real estate owned by a company",
     beispiele: "Buildings, land, equipment",
   },
+  {
+    wort: "Giralgeld",
+    en: "Book Money",
+    definition:
+      "Electronic money that exists only as accounting entries in bank records",
+    beispiele: "Bank deposits, electronic transfers, digital payments",
+  },
+  {
+    wort: "Sichtguthaben",
+    en: "Demand Deposit",
+    definition:
+      "Bank account balances that can be accessed on demand without any advance notice",
+    beispiele: "Checking accounts, current accounts",
+  },
+  {
+    wort: "Geldmarkt",
+    en: "Money Market",
+    definition:
+      "A segment of the financial market where short-term debt instruments are traded",
+    beispiele: "Treasury bills, commercial paper, certificates of deposit",
+  },
+  {
+    wort: "Kapitalmarkt",
+    en: "Capital Market",
+    definition:
+      "A segment of the financial market where long-term debt and equity securities are traded",
+    beispiele: "Stocks, bonds, debentures",
+  },
+  {
+    wort: "Objektfinanzierung",
+    en: "Asset Financing",
+    definition:
+      "A type of financing where a company uses its assets as collateral to secure a loan",
+    beispiele: "Equipment financing, vehicle financing, real estate financing",
+  },
+  {
+    wort: "Unternehmensfinanzierung",
+    en: "Corporate Financing",
+    definition:
+      "The process of raising capital for a company through various financial instruments",
+    beispiele: "Equity financing, debt financing, hybrid financing",
+  },
+  {
+    wort: "Bestandgrösse",
+    en: "Inventory Size",
+    definition:
+      "The total value of a company's inventory, including raw materials, work-in-progress, and finished goods",
+    beispiele: "Inventory value, inventory turnover",
+  },
+  {
+    wort: "Vorgang",
+    en: "Process",
+    definition:
+      "A series of steps or actions that are performed to achieve a specific goal",
+    beispiele: "Production process, sales process, marketing process",
+  },
 ];
 
 /**

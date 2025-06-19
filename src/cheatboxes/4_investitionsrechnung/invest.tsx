@@ -71,3 +71,4 @@ export const invest = [
     <img src={rbv} alt="Investitionsrechnung" />
   </CheatBox>,
 ];
+
