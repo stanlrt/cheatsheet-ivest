@@ -372,6 +372,41 @@ const glossaryEntries: GlossaryEntry[] = [
       "A series of steps or actions that are performed to achieve a specific goal",
     beispiele: "Production process, sales process, marketing process",
   },
+  {
+    wort: "Bonität",
+    en: "Creditworthiness",
+    definition:
+      "The ability of a company to repay its debts and meet its financial obligations",
+    beispiele: "Credit rating, credit score, credit history",
+  },
+  {
+    wort: "Delkredere",
+    en: "Del Credere",
+    definition:
+      "A guarantee given by a factor or agent to a principal that the debtor will pay the debt, with the factor assuming the risk of non-payment",
+    beispiele: "Factoring with del credere, trade credit insurance",
+  },
+  {
+    wort: "Einlage",
+    en: "Deposit",
+    definition:
+      "The transfer of money (bare deposit) or goods (goods deposit) from the private assets of a business owner to their sole proprietorship",
+    beispiele: "Bare deposit, goods deposit",
+  },
+  {
+    wort: "Rendite",
+    en: "Yield",
+    definition:
+      "The return on an investment, expressed as a percentage of the initial investment",
+    beispiele: "Yield on investment, yield on equity, yield on assets",
+  },
+  {
+    wort: "Leverage",
+    en: "Leverage",
+    definition:
+      "The use of debt to increase the potential return on an investment",
+    beispiele: "Leverage ratio, debt-to-equity ratio, financial leverage",
+  },
 ];
 
 /**
