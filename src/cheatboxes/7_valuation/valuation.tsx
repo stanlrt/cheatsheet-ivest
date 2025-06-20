@@ -15,6 +15,12 @@ import mittelbad from "./mittelbad.png";
 import dcff from "./dcff.png";
 import fcf from "./fcf.png";
 import tv from "./tv.png";
+import nopat from "./nopat.png";
+import dcfex from "./dcfex.png";
+import tvbsp from "./tvbsp.png";
+import dcfexam from "./dcfexam.png";
+import kgb from "./kgb.png";
+import goodwill from "./goodwill.png";
 
 export default [
   <div style={{ height: "120px" }} />,
@@ -133,20 +139,25 @@ export default [
   </CheatBox>,
   <CheatBox title="Discounted Cash Flow (DCF) methode">
     Cannot be manipulated by bookkeepers. Profit is opinion, cash is fact.
-    <div className="horizontal">
-      <div>
-        <h2>DCF</h2>
-        <img src={dcff} alt="dcff" style={{ width: "100%" }} />
-      </div>
-      <div>
-        <h2>FCF (Free cashflow)</h2>
-        <img src={fcf} alt="fcf" style={{ width: "100%" }} />
-      </div>
+    <div>
+      <h2>DCF</h2>
+      <img src={dcff} alt="dcff" style={{ width: "100%" }} />
+      <img src={dcfexam} alt="dcfexam" style={{ width: "100%" }} />
     </div>
+    <div>
+      <h2>FCF (Free cashflow)</h2>
+      <img src={fcf} alt="fcf" style={{ width: "100%" }} />
+      <img src={nopat} alt="nopat" />
+    </div>
+    <img src={dcfex} alt="dcfex" />
+  </CheatBox>,
+
+  <CheatBox>
     <h2>TV (terminal value)</h2>
     calculated at the end of a detailed planning horizon (e.g., 3-5 years) and
     captures the value of all cash flows thereafter, into perpetuity.
     <img src={tv} alt="tv" />
+    <img src={tvbsp} alt="tvbsp" />
     <h2>Pros cons</h2>
     <ul>
       <li>
@@ -179,5 +190,49 @@ export default [
       </li>
     </ol>
   </CheatBox>,
-  <div style={{ height: "10000px" }} />,
+  <CheatBox title="Multiplikator methode">
+    Vlauation by comparing to other already valued companies.
+    <h2>Choose multiple for private company</h2>
+    <ul>
+      <li>
+        <strong>Umsatz Multiple (Sales):</strong> For unprofitable companies
+        with future earning potential (startups, turnarounds)
+      </li>
+      <li>
+        <strong>EBITDA Multiple:</strong> Good baseline when no major future
+        investments expected; not affected by depreciation assumptions
+      </li>
+      <li>
+        <strong>EBIT Multiple:</strong> Better than EBITDA when similar high
+        investments are planned; accounts for past investments via depreciation
+      </li>
+      <li>
+        <strong>EBITC Multiple:</strong> For companies that don't profit but can
+        pay owner salary
+      </li>
+    </ul>
+    <h2>Choose multiple for public company</h2>
+    <div className="horizontal">
+      <ul>
+        <li>
+          Kurs-Gewinn-Verhältnis (KGV) or Price-to-Earnings (P/E) Ratio:
+          Compares the company's stock price to its earnings per share. A high
+          KGV suggests the market expects high future growth.
+        </li>
+        <li>
+          Kurs-Buchwert-Verhältnis (KBV) or Price-to-Book (P/B) Ratio: Compares
+          the stock's market value to its accounting book value.
+        </li>
+      </ul>
+      <img src={kgb} alt="kgb" />
+    </div>
+  </CheatBox>,
+  <CheatBox title="Goodwill">
+    Value of reputation, renowned customers, know-how, management quality, tech.
+    <div>
+      Goodwill= Unternehmenswert (Transaction Price) Netto-Substanzwert (Net
+      Asset Value)
+    </div>
+    <img src={goodwill} alt="goodwill" />
+  </CheatBox>,
 ];

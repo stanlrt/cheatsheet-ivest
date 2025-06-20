@@ -470,7 +470,7 @@ function createGlossaryCheatBoxes(entries: GlossaryEntry[]) {
   const chunks = chunkArray(sortedEntries, 10);
 
   const cheatBoxes = chunks.map((chunk, chunkIndex) => (
-    <CheatBox key={`glossary-chunk-${chunkIndex}`} style={{ padding: "0px" }}>
+    <CheatBox key={`glossary-chunk-${chunkIndex}`} style={{ padding: "0px" }}> 
       {renderGlossaryTableChunk(chunk)}
     </CheatBox>
   ));
