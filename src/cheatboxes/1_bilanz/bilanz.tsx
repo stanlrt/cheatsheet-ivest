@@ -81,15 +81,9 @@ export const bilanz = [
         </tr>
       </tbody>
     </table>
-    <div className="horizontal">
-      <img style={{ width: "30%" }} src={bilanzImg} alt="Bilanz" />
-      <img style={{ width: "30%" }} src={bilanzBsp} alt="Bilanz" />
-      <img
-        style={{ width: "30%" }}
-        src={bilanzStruktur}
-        alt="Erfolgsrechnung"
-      />
-    </div>
+    <img src={bilanzImg} alt="Bilanz" style={{ width: "70%" }} />
+    <img src={bilanzBsp} alt="Bilanz" style={{ width: "70%" }} />
+    <img src={bilanzStruktur} alt="Erfolgsrechnung" style={{ width: "50%" }} />
     <div>Summe Aktiven = Summe Passiven</div>
   </CheatBox>,
 ];

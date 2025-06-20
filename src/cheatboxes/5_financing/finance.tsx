@@ -14,10 +14,8 @@ import betaintr from "./betaintr.png";
 export const finanzierung = [
   <CheatTitle title="Finanzierung" />,
   <CheatBox title="Finanzierung">
-    <div className="horizontal">
-      <img src={magic} alt="Finanzierung" />
-      <img src={categories} alt="Finanzierung" />
-    </div>
+    <img src={magic} alt="Finanzierung" style={{ width: "80%" }} />
+    <img src={categories} alt="Finanzierung" style={{ width: "80%" }} />
     <ul>
       <li>
         <strong>Kapitalzuführung (Capital Injection):</strong> Bilanzorientierte
@@ -73,11 +71,11 @@ export const finanzierung = [
         </ul>
       </li>
     </ul>
-    <div className="horizontal">
-      <img src={typesdiag} alt="typesdiag" />
-      <img src={lifecycle} alt="lifecycle" />
-    </div>
-    <img src={catego} alt="catego" style={{ width: "50%" }} />
+  </CheatBox>,
+  <CheatBox title="Types">
+    <img src={typesdiag} alt="typesdiag" style={{ width: "80%" }} />
+    <img src={lifecycle} alt="lifecycle" style={{ width: "80%" }} />
+    <img src={catego} alt="catego" style={{ width: "80%" }} />
   </CheatBox>,
   <CheatBox title="Basics">
     <div>
@@ -833,8 +831,8 @@ export const finanzierung = [
       company's capital structure.
     </div>
     <h2>WACC Formel</h2>
-    <img src={wacc} alt="wacc" style={{ width: "50%" }} />
-    <span style={{ width: "50%" }}>
+    <img src={wacc} alt="wacc" style={{ width: "70%" }} />
+    <span style={{ width: "30%" }}>
       Tax-Shield: interests on foreign capital is tax deductible
     </span>
   </CheatBox>,
@@ -845,8 +843,8 @@ export const finanzierung = [
     </div>
     <h2>CAPM Formel</h2>
     <div className="horizontal">
-      <img src={capm} alt="capm" />
-      <ul style={{ width: "50%" }}>
+      <img src={capm} alt="capm" style={{ width: "70%" }} />
+      <ul style={{ width: "30%" }}>
         <li>
           r<sub>M</sub> is the expected return based on past 20 years
         </li>
@@ -855,9 +853,7 @@ export const finanzierung = [
         </li>
       </ul>
     </div>
-    <div className="horizontal">
-      <img src={beta} alt="beta" />
-      <img src={betaintr} alt="betaintr" />
-    </div>
+    <img src={beta} alt="beta" style={{ width: "70%" }} />
+    <img src={betaintr} alt="betaintr" style={{ width: "70%" }} />
   </CheatBox>,
 ];

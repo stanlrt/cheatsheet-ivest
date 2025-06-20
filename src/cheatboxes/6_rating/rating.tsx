@@ -31,26 +31,24 @@ export default [
     <h2>Find CS</h2>
     Economic boom -{">"} "CS" down
     <div className="horizontal">
-      <ol>
+      <ol style={{ width: "30%" }}>
         For each debt:
         <li>Find the rating</li>
         <li>Find the delay to repayment (maturity)</li>
         <li>Find the spread in the table</li>
       </ol>
-      <img src={cstable} alt="cstable" />
+      <img src={cstable} alt="cstable" style={{ width: "70%" }} />
     </div>
   </CheatBox>,
   <CheatBox>
     <h2>Beta</h2>
-    <div className="horizontal">
-      <div>
-        Levered: used for CAPM. Risk of assets+debt.
-        <img src={levered} alt="levered" style={{ width: "100%" }} />
-      </div>
-      <div>
-        Unlevered: used for benchmarking/comparison. Risk of assets.
-        <img src={unlevered} alt="unlevered" style={{ width: "100%" }} />
-      </div>
+    <div>
+      Levered: used for CAPM. Risk of assets+debt.
+      <img src={levered} alt="levered" style={{ width: "70%" }} />
+    </div>
+    <div>
+      Unlevered: used for benchmarking/comparison. Risk of assets.
+      <img src={unlevered} alt="unlevered" style={{ width: "70%" }} />
     </div>
     <div className="horizontal">
       <ol>

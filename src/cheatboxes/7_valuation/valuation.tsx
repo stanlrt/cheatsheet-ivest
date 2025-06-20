@@ -17,28 +17,26 @@ import fcf from "./fcf.png";
 import tv from "./tv.png";
 
 export default [
+  <div style={{ height: "120px" }} />,
   <CheatTitle title="Valuation" />,
-  <CheatBox>
-    <h2>Wert</h2>
+  <CheatBox title="Wert">
+    <img src={pricediffval} alt="pricediffval.png" style={{ width: "70%" }} />
+    <img src={mthods} alt="mthods" style={{ width: "50%" }} />
     <div className="horizontal">
-      <img src={pricediffval} alt="pricediffval.png" />
-      <img src={mthods} alt="mthods" />
-    </div>
-    <div className="horizontal">
-      <ul>
+      <ul style={{ width: "30%" }}>
         When:
         <li>Merger and Acquisition</li>
         <li>IPO</li>
         <li>Founding (AG Gmbh)</li>
         <li>Inheritance/new owners</li>
       </ul>
-      <img src={vsvalue} alt="vsvalue" />
+      <img src={vsvalue} alt="vsvalue" style={{ width: "70%" }} />
     </div>
-    <img src={art} alt="rt" />
+    <img src={art} alt="rt" style={{ width: "70%" }} />
   </CheatBox>,
   <CheatBox title="Comparison">
     <div className="horizontal">
-      <ul>
+      <ul style={{ width: "30%" }}>
         <li>
           Entity Approach: Values the entire firm (debt + equity), giving the
           Brutto-Unternehmenswert (Gross Enterprise Value). Useful for comparing
@@ -50,7 +48,7 @@ export default [
           relevant figure for an acquisition price
         </li>
       </ul>
-      <img src={nettobrutto} alt="nettobrutto" />
+      <img src={nettobrutto} alt="nettobrutto" style={{ width: "70%" }} />
     </div>
   </CheatBox>,
   <CheatBox title="Substanzwert (net asset value)">
@@ -181,4 +179,5 @@ export default [
       </li>
     </ol>
   </CheatBox>,
+  <div style={{ height: "10000px" }} />,
 ];

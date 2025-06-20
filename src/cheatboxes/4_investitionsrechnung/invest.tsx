@@ -22,8 +22,8 @@ export const invest = [
     <h2>Static: Amortisation</h2>
     Wie viele Jahre bis Investition amortisiert ist.
     <div className="horizontal">
-      <img src={amort2} alt="Investitionsrechnung" />
-      <ul>
+      <img src={amort2} alt="Investitionsrechnung" style={{ width: "70%" }} />
+      <ul style={{ width: "30%" }}>
         <li>E.g. 7.5 Kap.eintsatz / 1.5 = 5 Jahre</li>
         <li>
           Einfach, anschaulich aber heikel, gewichtet zeitliche Risiken sehr
@@ -36,10 +36,10 @@ export const invest = [
       Eigenkapitalrendite (ROE), Gesamtkapitalrendite (ROA)
     </h2>
     <div className="horizontal">
-      <img src={roi} style={{ width: "30%" }} alt="Investitionsrechnung" />
-      <img src={roe} style={{ width: "30%" }} alt="Investitionsrechnung" />
-      <img src={roa} style={{ width: "30%" }} alt="Investitionsrechnung" />
+      <img src={roi} alt="Investitionsrechnung" />
+      <img src={roe} alt="Investitionsrechnung" />
     </div>
+    <img src={roa} style={{ width: "50%" }} alt="Investitionsrechnung" />
     <div>Ø means average over years. Gebundenes Kapital = EK + FK (Gesamt)</div>
     <div className="horizontal">
       <img src={roi2} alt="Investitionsrechnung" />
@@ -64,11 +64,14 @@ export const invest = [
     "How much is a future amount of money worth to me today?"
     <img src={gegenwartswert} alt="Investitionsrechnung" />
     i: Zins (interest rate), n: #years precomputed values:
-    <img src={abzinsfaktor} alt="Investitionsrechnung" />
+    <img
+      src={abzinsfaktor}
+      alt="Investitionsrechnung"
+      style={{ width: "105%" }}
+    />
     <h2>Rentenbarwertfaktor (RBF)</h2>
     Sum of the PV for a yearly payment. Also: RbF = Kapitaleinsatz / Ø Cashflow
     pro Jahr.
-    <img src={rbv} alt="Investitionsrechnung" />
+    <img src={rbv} alt="Investitionsrechnung" style={{ width: "105%" }} />
   </CheatBox>,
 ];
-

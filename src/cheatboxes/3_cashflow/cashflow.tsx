@@ -34,10 +34,8 @@ export const cashflow = [
   </CheatBox>,
 
   <CheatBox title="CFO">
-    <div className="horizontal">
-      <img src={cashflowWays} alt="Geldflussrechnung" />
-      <img src={cashflowsum} alt="Geldflussrechnung" />
-    </div>
+    <img src={cashflowWays} alt="Geldflussrechnung" style={{ width: "80%" }} />
+    <img src={cashflowsum} alt="Geldflussrechnung" style={{ width: "80%" }} />
   </CheatBox>,
 
   <CheatBox title="CFO Direkt">

@@ -476,8 +476,9 @@ function createGlossaryCheatBoxes(entries: GlossaryEntry[]) {
   ));
 
   return [
+    <div style={{ height: "10000px" }} />,
     <CheatTitle title="Glossar" />,
-    <img src={flussig} alt="Glossar" />,
+    <img src={flussig} alt="Glossar" style={{ width: "80%" }} />,
     ...cheatBoxes,
   ];
 }
