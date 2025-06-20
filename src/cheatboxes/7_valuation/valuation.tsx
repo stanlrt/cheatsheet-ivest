@@ -7,6 +7,10 @@ import art from "./art.png";
 import nettobrutto from "./nettobrutto.png";
 import pv from "./pv.png";
 import pvlogic from "./pvlogic.png";
+import reingewinn from "./reingewinn.png";
+import rein1 from "./rein1.png";
+import rein2 from "./rein2.png";
+import mittelwert from "./mittelwert.png";
 
 export default [
   <CheatTitle title="Valuation" />,
@@ -108,6 +112,13 @@ export default [
       <div>r: discount rate (Zins)</div>
     </div>
     <img src={pvlogic} alt="pvlogic" />
+    <img src={reingewinn} alt="reingewinn" />
+    <div className="horizontal">
+      <img src={rein1} alt="rein1" />
+      <img src={rein2} alt="rein2" />
+    </div>
   </CheatBox>,
-  <CheatBox title="Mittelwert (Avg value) methode">h</CheatBox>,
+  <CheatBox title="Mittelwert (Avg value) methode">
+    <img src={mittelwert} alt="mittelwert" />
+  </CheatBox>,
 ];
