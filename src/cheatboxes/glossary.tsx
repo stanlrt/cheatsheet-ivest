@@ -407,6 +407,13 @@ const glossaryEntries: GlossaryEntry[] = [
       "The use of debt to increase the potential return on an investment",
     beispiele: "Leverage ratio, debt-to-equity ratio, financial leverage",
   },
+  {
+    wort: "Warenvorrat",
+    en: "Inventory",
+    definition:
+      "The value of goods held for sale in the ordinary course of business",
+    beispiele: "Raw materials, work-in-progress, finished goods",
+  },
 ];
 
 /**

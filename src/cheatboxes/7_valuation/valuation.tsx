@@ -11,6 +11,10 @@ import reingewinn from "./reingewinn.png";
 import rein1 from "./rein1.png";
 import rein2 from "./rein2.png";
 import mittelwert from "./mittelwert.png";
+import mittelbad from "./mittelbad.png";
+import dcff from "./dcff.png";
+import fcf from "./fcf.png";
+import tv from "./tv.png";
 
 export default [
   <CheatTitle title="Valuation" />,
@@ -117,8 +121,64 @@ export default [
       <img src={rein1} alt="rein1" />
       <img src={rein2} alt="rein2" />
     </div>
+    git
   </CheatBox>,
   <CheatBox title="Mittelwert (Avg value) methode">
-    <img src={mittelwert} alt="mittelwert" />
+    <div className="horizontal">
+      <img src={mittelwert} alt="mittelwert" />
+      <div>
+        TLDR: prgmatic, includes both current and future potential, used for SME
+        and tax. BUT: weighting is arbitrary and not robust. DCF preferred.
+        <img src={mittelbad} alt="mittelbad" />
+      </div>
+    </div>
+  </CheatBox>,
+  <CheatBox title="Discounted Cash Flow (DCF) methode">
+    Cannot be manipulated by bookkeepers. Profit is opinion, cash is fact.
+    <div className="horizontal">
+      <div>
+        <h2>DCF</h2>
+        <img src={dcff} alt="dcff" style={{ width: "100%" }} />
+      </div>
+      <div>
+        <h2>FCF (Free cashflow)</h2>
+        <img src={fcf} alt="fcf" style={{ width: "100%" }} />
+      </div>
+    </div>
+    <h2>TV (terminal value)</h2>
+    calculated at the end of a detailed planning horizon (e.g., 3-5 years) and
+    captures the value of all cash flows thereafter, into perpetuity.
+    <img src={tv} alt="tv" />
+    <h2>Pros cons</h2>
+    <ul>
+      <li>
+        Advantages: It is considered international best practice, focuses on
+        cash flow (which is less subject to manipulation than earnings), and
+        allows for detailed modeling of a company's future, making it suitable
+        for high-growth firms like startups.
+      </li>
+      <li>
+        Disadvantages: The valuation is highly sensitive to assumptions about
+        future cash flows, growth rates, and the discount rate. The Terminal
+        Value often constitutes a significant portion of the total valuation,
+        making it vulnerable to even small errors in these assumptions.
+      </li>
+    </ul>
+  </CheatBox>,
+  <CheatBox title="Valuation process">
+    <ol>
+      <li>
+        Detailplanung (Detailed Planning Phase, e.g., 3-5 years): Explicitly
+        forecast the FCF for each year based on detailed business plans.
+      </li>
+      <li>
+        Übergangsphase (Transition Phase, e.g., 6-10 years): Assume a constant,
+        medium-term FCF growth rate.
+      </li>
+      <li>
+        Endphase (Terminal Phase): Calculate the Terminal Value, which
+        represents all future cash flows from this point forward.
+      </li>
+    </ol>
   </CheatBox>,
 ];
