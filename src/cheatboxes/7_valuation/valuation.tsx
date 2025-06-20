@@ -212,7 +212,6 @@ export default [
       </li>
     </ul>
     <h2>Choose multiple for public company</h2>
-    <div className="horizontal">
       <ul>
         <li>
           Kurs-Gewinn-Verhältnis (KGV) or Price-to-Earnings (P/E) Ratio:
@@ -225,7 +224,6 @@ export default [
         </li>
       </ul>
       <img src={kgb} alt="kgb" />
-    </div>
   </CheatBox>,
   <CheatBox title="Goodwill">
     Value of reputation, renowned customers, know-how, management quality, tech.
