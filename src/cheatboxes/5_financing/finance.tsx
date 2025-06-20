@@ -776,30 +776,50 @@ export const finanzierung = [
   </CheatBox>,
   <CheatBox title="WACC & CAPM">
     <div>
-      Cost of Capital (Kapitalkosten): The Rendite (return) that a company must
-      offer to its Kapitalgebern (capital providers, i.e., investors and
-      lenders) to persuade them to provide their capital. <br />
+      <strong>Cost of Capital (Kapitalkosten):</strong> The Rendite (return)
+      that a company must offer to its Kapitalgebern (capital providers, i.e.,
+      investors and lenders) to persuade them to provide their capital. <br />
       Useful for: valuation (Unternehmensbewertung), Investtitionsanalyse,
       Wertmanagement, IFRS Impairment Tests
     </div>
     <div>
-      IFRS Impairment Tests: each year, determine if the book value of assets
-      still reflects the market value. If not, add Abscreibungen (amort.).
+      <strong>IFRS Impairment Tests:</strong> each year, determine if the book
+      value of assets still reflects the market value. If not, add Abscreibungen
+      (amort.).
     </div>
     <div>
-      Opportunity Cost: This required return must be at least as high as the
-      return investors could get from alternative investments with similar
-      Risikocharkteristiken (risk characteristics)
+      <strong>Opportunity Cost:</strong> This required return must be at least
+      as high as the return investors could get from alternative investments
+      with similar Risikocharkteristiken (risk characteristics)
     </div>
     <div>
-      Risk-Free Rate: At a bare minimum, investors expect a return that is
-      risikofrei (risk-free). In Switzerland, the benchmark for this is the
-      return on Bundesobligationen (federal government bonds).
+      <strong>Risk-Free Rate:</strong> At a bare minimum, investors expect a
+      return that is risikofrei (risk-free). In Switzerland, the benchmark for
+      this is the return on Bundesobligationen (federal government bonds).
     </div>
     <div>
-      Risk Premium: For any investment riskier than a government bond, investors
-      demand an additional return called a Risikoprämie (risk premium). The
-      higher the investment's risk, the higher the required return.
+      <strong>Risk Premium:</strong> For any investment riskier than a
+      government bond, investors demand an additional return called a
+      Risikoprämie (risk premium). The higher the investment's risk, the higher
+      the required return.
+    </div>
+    <div>
+      <strong>
+        Diskontsatz k<sub>EK</sub> is the Required Retrun Rate for the investor
+        (Eigenkapitalgeber):
+      </strong>{" "}
+      Minimum profit expected to make the investment worth it. Compensation for
+      the risk. "If I give my money to this company, which is a risky venture, I
+      need to earn at least 12% per year."
+    </div>
+    <div>
+      <strong>
+        Diskontsatz k<sub>EK</sub> is the cost of equity (Eigenkapitalkosten):
+      </strong>
+      It's a calculatory cost (no actual payment). "In order to attract and keep
+      investors, we must generate a performance that provides them with their
+      expected 12% return. This 12% is the 'price' we pay for using their
+      capital."{" "}
     </div>
   </CheatBox>,
   <CheatBox title="WACC">
@@ -811,19 +831,6 @@ export const finanzierung = [
       Weighted Average Cost of Capital. The average cost of capital for a
       company, weighted by the proportion of each type of capital in the
       company's capital structure.
-    </div>
-    <div>
-      Diskontsatz k<sub>EK</sub> is the Required Retrun Rate for the investor
-      (Eigenkapitalgeber). Minimum profit expected to make the investment worth
-      it. Compensation for the risk. "If I give my money to this company, which
-      is a risky venture, I need to earn at least 12% per year."
-    </div>
-    <div>
-      Diskontsatz k<sub>EK</sub> is the cost of equity (Eigenkapitalkosten).
-      It's a calculatory cost (no actual payment). "In order to attract and keep
-      investors, we must generate a performance that provides them with their
-      expected 12% return. This 12% is the 'price' we pay for using their
-      capital."{" "}
     </div>
     <h2>WACC Formel</h2>
     <img src={wacc} alt="wacc" style={{ width: "50%" }} />

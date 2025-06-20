@@ -10,6 +10,8 @@ import { erfolg } from "@cheatboxes/2_erfolg/ergfolg.tsx";
 import { cashflow } from "@cheatboxes/3_cashflow/cashflow.tsx";
 import { invest } from "@cheatboxes/4_investitionsrechnung/invest.tsx";
 import { finanzierung } from "@cheatboxes/5_financing/finance.tsx";
+import rating from "@cheatboxes/6_rating/rating.tsx";
+import valuation from "@cheatboxes/7_valuation/valuation.tsx";
 
 const content = [
   <CheatTitle title="Buchhaltung" />,
@@ -18,6 +20,8 @@ const content = [
   ...cashflow,
   ...invest,
   ...finanzierung,
+  ...rating,
+  ...valuation,
   ...glossary,
 ];
 
